@@ -28,7 +28,6 @@ class SearchSchoolAdapter(val itemlist: ArrayList<infoRow>, val context: Context
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        println("갱신")
         holder.bind(itemlist[position], context, itemClick)
     }
 

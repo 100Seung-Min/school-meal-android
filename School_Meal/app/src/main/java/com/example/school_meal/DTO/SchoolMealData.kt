@@ -10,5 +10,6 @@ data class mealServiceDietInfo(
 
 data class dietRow(
     val DDISH_NM: String,
-    val MLSV_YMD: String
+    val MLSV_YMD: String,
+    val MMEAL_SC_NM: String
 )

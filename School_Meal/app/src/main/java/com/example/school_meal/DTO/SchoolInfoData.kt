@@ -10,4 +10,6 @@ data class schoolInfo(
 
 data class infoRow(
     val SCHUL_NM: String,
+    val ATPT_OFCDC_SC_CODE: String,
+    val SD_SCHUL_CODE: String
 )

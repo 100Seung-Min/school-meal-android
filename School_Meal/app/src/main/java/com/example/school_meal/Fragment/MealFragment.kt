@@ -87,6 +87,9 @@ class MealFragment(val mySchoolCode: String, val mySchoolNum: String) : Fragment
                                 if(choose == 3 && data.MMEAL_SC_NM.equals("석식")){
                                     itemlist.add(data)
                                 }
+                                if(SimpleDateFormat("EE").format(date).equals("목") && choose == 3 && data.MMEAL_SC_NM.equals("석식")){
+                                    itemlist.add(dietRow("집 가는 날", (data.MLSV_YMD.toInt() + 1).toString(), ""))
+                                }
                             }
                         }
                     }

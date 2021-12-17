@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     var mySchoolNum: String? = null
     var mySchoolClass: String? = null
     var mySchoolGrade: String? = null
+    var mySchoolLevel: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         mySchoolNum = intent.getStringExtra("mySchoolNum")
         mySchoolClass = intent.getStringExtra("mySchoolClass")
         mySchoolGrade = intent.getStringExtra("mySchoolGrade")
+        mySchoolLevel = intent.getStringExtra("mySchoolLevel")
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.frame_layout, MealFragment(mySchoolCode!!, mySchoolNum!!)).commit()
                 }
                 R.id.school_time_menu -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.frame_layout, TimeTableFragment(mySchoolCode!!, mySchoolNum!!, mySchoolClass!!, mySchoolGrade!!)).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_layout, TimeTableFragment(mySchoolCode!!, mySchoolNum!!, mySchoolClass!!, mySchoolGrade!!, mySchoolLevel!!)).commit()
                 }
                 else -> {
                     return@setOnItemSelectedListener false
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 edit.putString("mySchoolNum", null)
                 edit.putString("mySchoolClass", null)
                 edit.putString("mySchoolGrade", null)
+                edit.putString("mySchoolLevel", null)
                 edit.commit()
                 startActivity(intent)
                 finish()

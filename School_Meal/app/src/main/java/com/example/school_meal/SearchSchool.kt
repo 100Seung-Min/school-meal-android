@@ -24,7 +24,7 @@ class SearchSchool : AppCompatActivity() {
     val binding by lazy { ActivitySearchSchoolBinding.inflate(layoutInflater) }
     val itemlist: ArrayList<infoRow> = ArrayList()
     lateinit var adapter: SearchSchoolAdapter
-    var selectItem: infoRow = infoRow("", "", "")
+    var selectItem: infoRow = infoRow("", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +37,7 @@ class SearchSchool : AppCompatActivity() {
         var mySchoolNum = pref.getString("mySchoolNum", null)
         var mySchoolClass = pref.getString("mySchoolClass", null)
         var mySchoolGrade = pref.getString("mySchoolGrade", null)
+        var mySchoolLevel = pref.getString("mySchoolLevel", null)
 
         if(!mySchoolName.isNullOrEmpty()){
             val intent = Intent(this, MainActivity::class.java)
@@ -45,6 +46,7 @@ class SearchSchool : AppCompatActivity() {
             intent.putExtra("mySchoolNum", mySchoolNum)
             intent.putExtra("mySchoolClass", mySchoolClass)
             intent.putExtra("mySchoolGrade", mySchoolGrade)
+            intent.putExtra("mySchoolLevel", mySchoolLevel)
             startActivity(intent)
             finish()
         }
@@ -59,6 +61,7 @@ class SearchSchool : AppCompatActivity() {
             mySchoolName = selectItem.SCHUL_NM
             mySchoolCode = selectItem.ATPT_OFCDC_SC_CODE
             mySchoolNum = selectItem.SD_SCHUL_CODE
+            mySchoolLevel = selectItem.SCHUL_KND_SC_NM
             mySchoolClass = binding.classEdit.text.toString()
             mySchoolGrade = binding.gradeEdit.text.toString()
             edit.putString("mySchoolName", mySchoolName)
@@ -66,12 +69,14 @@ class SearchSchool : AppCompatActivity() {
             edit.putString("mySchoolNum", mySchoolNum)
             edit.putString("mySchoolClass", mySchoolClass)
             edit.putString("mySchoolGrade", mySchoolGrade)
+            edit.putString("mySchoolLevel", mySchoolLevel)
             edit.commit()
             intent.putExtra("mySchoolName", mySchoolName)
             intent.putExtra("mySchoolCode", mySchoolCode)
             intent.putExtra("mySchoolNum", mySchoolNum)
             intent.putExtra("mySchoolClass", mySchoolClass)
             intent.putExtra("mySchoolGrade", mySchoolGrade)
+            intent.putExtra("mySchoolLevel", mySchoolLevel)
             startActivity(intent)
             finish()
         }

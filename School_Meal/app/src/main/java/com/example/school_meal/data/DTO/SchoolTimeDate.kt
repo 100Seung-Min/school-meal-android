@@ -1,4 +1,4 @@
-package com.example.school_meal.DTO
+package com.example.school_meal.data.DTO
 
 data class SchoolTimeDate(
     val hisTimetable : ArrayList<hisTimetable>,

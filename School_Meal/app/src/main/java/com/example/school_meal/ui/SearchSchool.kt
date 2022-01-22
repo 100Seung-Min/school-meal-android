@@ -1,20 +1,18 @@
-package com.example.school_meal
+package com.example.school_meal.ui
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import androidx.app
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
-import com.example.school_meal.Adapter.SearchSchoolAdapter
-import com.example.school_meal.DTO.SchoolInfoData
-import com.example.school_meal.DTO.infoRow
+import com.example.school_meal.ui.Adapter.SearchSchoolAdapter
+import com.example.school_meal.data.DTO.SchoolInfoData
+import com.example.school_meal.data.DTO.infoRow
 import com.example.school_meal.databinding.ActivitySearchSchoolBinding
-import com.example.school_meal.retrofit.SchoolAPIClient
+import com.example.school_meal.data.retrofit.SchoolAPIClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

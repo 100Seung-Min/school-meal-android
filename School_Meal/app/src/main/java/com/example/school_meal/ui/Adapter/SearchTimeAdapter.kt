@@ -1,14 +1,14 @@
-package com.example.school_meal.Adapter
+package com.example.school_meal.ui.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.school_meal.DTO.SchoolTimeDate
-import com.example.school_meal.DTO.elsTimetable
-import com.example.school_meal.DTO.hisTimetable
-import com.example.school_meal.DTO.misTimetable
+import com.example.school_meal.data.DTO.SchoolTimeDate
+import com.example.school_meal.data.DTO.elsTimetable
+import com.example.school_meal.data.DTO.hisTimetable
+import com.example.school_meal.data.DTO.misTimetable
 import com.example.school_meal.R
 
 class SearchTimeAdapter(val itemlist: SchoolTimeDate, val schoolLevel: String): RecyclerView.Adapter<SearchTimeAdapter.ViewHolder>() {

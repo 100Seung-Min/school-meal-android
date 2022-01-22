@@ -1,4 +1,4 @@
-package com.example.school_meal.Fragment
+package com.example.school_meal.ui.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import com.example.school_meal.Adapter.SearchMealAdapter
-import com.example.school_meal.DTO.SchoolMealData
-import com.example.school_meal.DTO.dietRow
-import com.example.school_meal.R
+import com.example.school_meal.ui.Adapter.SearchMealAdapter
+import com.example.school_meal.data.DTO.SchoolMealData
+import com.example.school_meal.data.DTO.dietRow
 import com.example.school_meal.databinding.FragmentMealBinding
-import com.example.school_meal.retrofit.SchoolAPIClient
+import com.example.school_meal.data.retrofit.SchoolAPIClient
 import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 import retrofit2.Callback

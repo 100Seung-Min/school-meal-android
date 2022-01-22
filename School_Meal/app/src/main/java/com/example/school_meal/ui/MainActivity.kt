@@ -1,19 +1,13 @@
-package com.example.school_meal
+package com.example.school_meal.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import com.example.school_meal.Adapter.SearchMealAdapter
-import com.example.school_meal.DTO.SchoolMealData
-import com.example.school_meal.DTO.dietRow
-import com.example.school_meal.Fragment.MealFragment
-import com.example.school_meal.Fragment.TimeTableFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.example.school_meal.ui.Fragment.MealFragment
+import com.example.school_meal.ui.Fragment.TimeTableFragment
+import com.example.school_meal.R
 import com.example.school_meal.databinding.ActivityMainBinding
-import com.example.school_meal.retrofit.SchoolAPIClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 

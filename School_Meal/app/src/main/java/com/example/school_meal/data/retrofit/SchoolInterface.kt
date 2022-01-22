@@ -1,10 +1,8 @@
-package com.example.school_meal.retrofit
+package com.example.school_meal.data.retrofit
 
-import com.example.school_meal.DTO.SchoolInfoData
-import com.example.school_meal.DTO.SchoolMealData
-import com.example.school_meal.DTO.SchoolTimeDate
-import com.example.school_meal.DTO.schoolInfo
-import okhttp3.ResponseBody
+import com.example.school_meal.data.DTO.SchoolInfoData
+import com.example.school_meal.data.DTO.SchoolMealData
+import com.example.school_meal.data.DTO.SchoolTimeDate
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.example.school_meal.Adapter
+package com.example.school_meal.ui.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.school_meal.DTO.dietRow
+import com.example.school_meal.data.DTO.dietRow
 import com.example.school_meal.R
 import java.text.SimpleDateFormat
 import java.util.*

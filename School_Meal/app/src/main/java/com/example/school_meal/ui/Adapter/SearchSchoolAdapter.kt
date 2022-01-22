@@ -1,4 +1,4 @@
-package com.example.school_meal.Adapter
+package com.example.school_meal.ui.Adapter
 
 import android.content.Context
 import android.graphics.Color
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.school_meal.DTO.infoRow
+import com.example.school_meal.data.DTO.infoRow
 import com.example.school_meal.R
 
 class SearchSchoolAdapter(val itemlist: ArrayList<infoRow>, val context: Context, val itemClick : (infoRow) -> Unit): RecyclerView.Adapter<SearchSchoolAdapter.ViewHolder>() {

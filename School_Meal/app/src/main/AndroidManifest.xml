@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.School_Meal">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchSchool"
+            android:name=".ui.SearchSchool"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

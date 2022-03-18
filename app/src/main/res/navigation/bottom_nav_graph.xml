@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/timeFragment">
+
+    <fragment
+        android:id="@+id/mealFragment"
+        android:name="com.example.school_meal.ui.meal.MealFragment"
+        tools:layout="@layout/fragment_meal"/>
+    <fragment
+        android:id="@+id/timeFragment"
+        android:name="com.example.school_meal.ui.time.TimeTableFragment"
+        tools:layout="@layout/fragment_time_table"/>
+
+</navigation>

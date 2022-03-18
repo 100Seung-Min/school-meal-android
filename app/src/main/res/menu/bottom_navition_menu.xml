@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="시간표"
+        android:id="@+id/timeFragment"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:enabled="true"/>
+
+    <item
+        android:title="학사일정"
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:enabled="true"/>
+
+    <item
+        android:title="급식"
+        android:id="@+id/mealFragment"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:enabled="true"/>
+
+</menu>

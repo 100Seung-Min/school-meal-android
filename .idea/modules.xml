@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/School_Meal.iml" filepath="$PROJECT_DIR$/.idea/modules/School_Meal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/School_Meal.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/School_Meal.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/School_Meal.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/School_Meal.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/School_Meal.presentation.iml" filepath="$PROJECT_DIR$/.idea/modules/app/School_Meal.presentation.iml" />
     </modules>
   </component>
 </project>

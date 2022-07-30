@@ -1,6 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("com.android.application")
+    id("dagger.hilt.android.plugin")
+    kotlin("android")
+    kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -11,7 +14,6 @@ android {
         targetSdk = Versions.TARGET_SDK_VERSION
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -37,9 +39,18 @@ dependencies {
     implementation(Dependency.AndroidX.APP_COMPAT)
 
     implementation(Dependency.Google.MATERIAL)
+    implementation(Dependency.Google.HILT_ANDROID)
+    kapt(Dependency.Google.HILT_ANDROID_COMPILER)
 
     testImplementation(Dependency.UnitTest.JUNIT)
 
     androidTestImplementation(Dependency.AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
+
+    implementation(Dependency.Libraries.RETROFIT)
+    implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
+    implementation(Dependency.Libraries.OKHTTP)
+    implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(Dependency.Libraries.MOSHI)
+    kapt(Dependency.Libraries.MOSHI_COMPILER)
 }

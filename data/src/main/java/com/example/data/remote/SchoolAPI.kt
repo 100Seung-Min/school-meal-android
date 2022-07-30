@@ -9,7 +9,7 @@ import retrofit2.http.Query
 import java.text.SimpleDateFormat
 import java.util.*
 
-interface SchoolInterface {
+interface SchoolAPI {
     @GET("mealServiceDietInfo")
     fun getMeal(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",

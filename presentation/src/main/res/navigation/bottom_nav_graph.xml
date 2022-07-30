@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/mealFragment"
-        android:name="com.example.school_meal.ui.meal.MealFragment"
+        android:name="com.example.school_meal.ui.component.meal.MealFragment"
         tools:layout="@layout/fragment_meal"/>
     <fragment
         android:id="@+id/timeFragment"
-        android:name="com.example.school_meal.ui.time.TimeTableFragment"
+        android:name="com.example.school_meal.ui.component.time.TimeTableFragment"
         tools:layout="@layout/fragment_time_table"/>
 
 </navigation>

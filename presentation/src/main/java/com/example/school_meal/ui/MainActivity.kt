@@ -1,14 +1,8 @@
 package com.example.school_meal.ui
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.MenuItem
-import com.example.school_meal.ui.meal.MealFragment
-import com.example.school_meal.ui.time.TimeTableFragment
 import com.example.school_meal.R
-import com.example.school_meal.base.BaseActivity
+import com.example.school_meal.ui.base.BaseActivity
 import com.example.school_meal.databinding.ActivityMainBinding
-import com.example.school_meal.ui.search.SearchSchool
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 

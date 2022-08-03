@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.data.remote.response
 
 data class SchoolInfoData(
     val schoolInfo: ArrayList<schoolInfo>,

@@ -1,9 +1,8 @@
-package com.example.data.remote
+package com.example.data.remote.api
 
-import com.example.data.model.SchoolInfoData
-import com.example.data.model.SchoolMealData
-import com.example.data.model.SchoolTimeDate
-import retrofit2.Call
+import com.example.data.remote.response.SchoolInfoData
+import com.example.data.remote.response.SchoolMealData
+import com.example.data.remote.response.SchoolTimeDate
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.text.SimpleDateFormat
@@ -19,7 +18,7 @@ interface SchoolAPI {
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("MLSV_YMD") mealMonth: String = SimpleDateFormat("yyyyMM").format(Date())
-    ): Call<SchoolMealData>
+    ): SchoolMealData
 
     @GET("schoolInfo")
     fun getSchoolInfo(
@@ -28,7 +27,7 @@ interface SchoolAPI {
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
         @Query("SCHUL_NM") schoolName: String
-    ) : Call<SchoolInfoData>
+    ) : SchoolInfoData
 
     @GET("hisTimetable")
     fun getHisTime(
@@ -43,7 +42,7 @@ interface SchoolAPI {
         @Query("CLASS_NM") className: String,
         @Query("TI_FROM_YMD") startDay: String,
         @Query("TI_TO_YMD") endDay: String
-    ): Call<SchoolTimeDate>
+    ): SchoolTimeDate
 
     @GET("misTimetable")
     fun getMisTime(
@@ -58,7 +57,7 @@ interface SchoolAPI {
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
         @Query("CLASS_NM") className: String
-    ): Call<SchoolTimeDate>
+    ): SchoolTimeDate
 
     @GET("elsTimetable")
     fun getElsTime(
@@ -73,5 +72,5 @@ interface SchoolAPI {
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
         @Query("CLASS_NM") className: String
-    ): Call<SchoolTimeDate>
+    ): SchoolTimeDate
 }

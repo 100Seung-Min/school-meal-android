@@ -1,6 +1,6 @@
 package com.example.school_meal.di
 
-import com.example.data.remote.SchoolAPI
+import com.example.data.remote.api.SchoolAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    const val BASE_URL = "https://open.neis.go.kr/hub/"
 
     @Provides
     @Singleton
@@ -32,7 +33,7 @@ object NetworkModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://open.neis.go.kr/hub/")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .client(provideHttpClient())
             .addConverterFactory(gsonConverterFactory)

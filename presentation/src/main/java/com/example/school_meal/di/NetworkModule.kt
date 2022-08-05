@@ -1,6 +1,8 @@
 package com.example.school_meal.di
 
+import com.example.data.remote.api.MealAPI
 import com.example.data.remote.api.SchoolAPI
+import com.example.data.remote.api.TimeAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,5 +52,17 @@ object NetworkModule {
     @Singleton
     fun provideSchoolService(retrofit: Retrofit): SchoolAPI {
         return retrofit.create(SchoolAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMealService(retrofit: Retrofit): MealAPI {
+        return retrofit.create(MealAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTimeService(retrofit: Retrofit): TimeAPI {
+        return retrofit.create(TimeAPI::class.java)
     }
 }

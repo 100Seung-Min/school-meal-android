@@ -14,12 +14,12 @@ interface TimeAPI {
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
-        @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
-        @Query("SD_SCHUL_CODE") schoolCode: String,
-        @Query("GRADE") grade: String,
         @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
                 .toInt() < 7
         ) "1" else "2",
+        @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
+        @Query("SD_SCHUL_CODE") schoolCode: String,
+        @Query("GRADE") grade: String,
         @Query("CLASS_NM") className: String,
         @Query("TI_FROM_YMD") startDay: String,
         @Query("TI_TO_YMD") endDay: String,
@@ -34,12 +34,12 @@ interface TimeAPI {
         @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
                 .toInt() < 7
         ) "1" else "2",
-        @Query("TI_FROM_YMD") startDay: String,
-        @Query("TI_TO_YMD") endDay: String,
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
         @Query("CLASS_NM") className: String,
+        @Query("TI_FROM_YMD") startDay: String,
+        @Query("TI_TO_YMD") endDay: String,
     ): SchoolTimeDate
 
     @GET("elsTimetable")
@@ -51,11 +51,11 @@ interface TimeAPI {
         @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
                 .toInt() < 7
         ) "1" else "2",
-        @Query("TI_FROM_YMD") startDay: String,
-        @Query("TI_TO_YMD") endDay: String,
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
         @Query("CLASS_NM") className: String,
+        @Query("TI_FROM_YMD") startDay: String,
+        @Query("TI_TO_YMD") endDay: String,
     ): SchoolTimeDate
 }

@@ -15,7 +15,7 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.school_meal.ui.component.search.SearchSchool"
+            android:name="com.example.school_meal.ui.component.search.SearchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

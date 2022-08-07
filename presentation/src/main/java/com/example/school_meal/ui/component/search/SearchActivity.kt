@@ -1,32 +1,26 @@
 package com.example.school_meal.ui.component.search
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.example.school_meal.data.DTO.SchoolInfoData
-import com.example.school_meal.data.DTO.infoRow
-import com.example.school_meal.databinding.ActivitySearchSchoolBinding
-import com.example.school_meal.data.retrofit.SchoolAPIClient
+import com.example.data.remote.response.SchoolInfoData
+import com.example.data.remote.response.infoRow
+import com.example.school_meal.R
+import com.example.school_meal.databinding.ActivitySearchBinding
 import com.example.school_meal.ui.MainActivity
+import com.example.school_meal.ui.adapter.SearchSchoolAdapter
+import com.example.school_meal.ui.component.base.BaseActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchSchool : AppCompatActivity() {
+class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_search) {
 
-    val binding by lazy { ActivitySearchSchoolBinding.inflate(layoutInflater) }
     val itemlist: ArrayList<infoRow> = ArrayList()
     lateinit var adapter: SearchSchoolAdapter
     var selectItem: infoRow = infoRow("", "", "", "")
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
+    override fun init() {
         var pref = getSharedPreferences("MY_SCHOOL", MODE_PRIVATE)
         var edit = pref.edit()
         var mySchoolName = pref.getString("mySchoolName", null)
@@ -85,7 +79,7 @@ class SearchSchool : AppCompatActivity() {
         binding.searchSchoolBtn.setOnClickListener {
             val schoolName = binding.searchSchoolEdit.text.toString()
             if(binding.classEdit.text.isEmpty() && binding.gradeEdit.text.isEmpty() && schoolName.isEmpty()){
-                makeToast("모두 입력해주세요")
+                ("모두 입력해주세요")
             }
             else if(schoolName.isEmpty()){
                 makeToast("학교를 입력해주세요")
@@ -97,7 +91,7 @@ class SearchSchool : AppCompatActivity() {
                 makeToast("반을 입력해주세요")
             }
             else{
-                SchoolAPIClient.api.getSchoolInfo(schoolName = schoolName).enqueue(object : Callback<SchoolInfoData>{
+                SchoolAPIClient.API.getSchoolInfo(schoolName = schoolName).enqueue(object : Callback<SchoolInfoData>{
                     override fun onResponse(
                         call: Call<SchoolInfoData>,
                         response: Response<SchoolInfoData>
@@ -127,7 +121,7 @@ class SearchSchool : AppCompatActivity() {
         }
     }
 
-    fun makeToast(text: String){
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    override fun observe() {
     }
+
 }

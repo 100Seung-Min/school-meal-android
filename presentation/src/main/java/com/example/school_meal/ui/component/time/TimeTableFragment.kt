@@ -1,34 +1,30 @@
 package com.example.school_meal.ui.component.time
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.school_meal.data.DTO.*
+import com.example.data.remote.response.*
+import com.example.school_meal.R
 import com.example.school_meal.databinding.FragmentTimeTableBinding
-import com.example.school_meal.data.retrofit.SchoolAPIClient
+import com.example.school_meal.ui.adapter.SearchTimeAdapter
+import com.example.school_meal.ui.component.base.BaseFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
-class TimeTableFragment(val mySchoolCode: String, val mySchoolNum: String, val mySchoolClass: String, val mySchoolGrade: String, val mySchoolLevel: String) : Fragment() {
-
-    lateinit var binding: FragmentTimeTableBinding
+class TimeTableFragment(
+    val mySchoolCode: String,
+    val mySchoolNum: String,
+    val mySchoolClass: String,
+    val mySchoolGrade: String,
+    val mySchoolLevel: String,
+) : BaseFragment<FragmentTimeTableBinding>(
+    R.layout.fragment_time_table) {
     val itemlist: ArrayList<timeDateRow> = ArrayList()
     val timeTable: SchoolTimeDate = SchoolTimeDate(ArrayList(), ArrayList(), ArrayList())
     lateinit var adapter: SearchTimeAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentTimeTableBinding.inflate(inflater, container, false)
-
+    override fun init() {
         adapter = SearchTimeAdapter(timeTable, mySchoolLevel)
         binding.timeTableRecyclerview.adapter = adapter
         binding.timeTableRecyclerview.layoutManager = LinearLayoutManager(context)
@@ -37,15 +33,20 @@ class TimeTableFragment(val mySchoolCode: String, val mySchoolNum: String, val m
         val startDay = SimpleDateFormat("yyyyMMdd").format(Date()).toInt() + (1 - dayOfWeek)
         val endDay = SimpleDateFormat("yyyyMMdd").format(Date()).toInt() + (7 - dayOfWeek)
         if(mySchoolLevel == "고등학교"){
-            SchoolAPIClient.api.getHisTime(cityCode = mySchoolCode, schoolCode = mySchoolNum, grade = mySchoolGrade, className = mySchoolClass, startDay = startDay.toString(), endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate>{
+            SchoolAPIClient.API.getHisTime(cityCode = mySchoolCode,
+                schoolCode = mySchoolNum,
+                grade = mySchoolGrade,
+                className = mySchoolClass,
+                startDay = startDay.toString(),
+                endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate> {
                 override fun onResponse(
                     call: Call<SchoolTimeDate>,
-                    response: Response<SchoolTimeDate>
+                    response: Response<SchoolTimeDate>,
                 ) {
-                    if(response.body()!!.hisTimetable != null){
-                        for(timeData in response.body()!!.hisTimetable){
-                            if(timeData.row != null){
-                                for(data in timeData.row){
+                    if (response.body()!!.hisTimetable != null) {
+                        for (timeData in response.body()!!.hisTimetable) {
+                            if (timeData.row != null) {
+                                for (data in timeData.row) {
                                     itemlist.add(data)
                                 }
                             }
@@ -78,15 +79,20 @@ class TimeTableFragment(val mySchoolCode: String, val mySchoolNum: String, val m
             })
         }
         else if(mySchoolLevel == "중학교"){
-            SchoolAPIClient.api.getMisTime(cityCode = mySchoolCode, schoolCode = mySchoolNum, grade = mySchoolGrade, className = mySchoolClass, startDay = startDay.toString(), endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate>{
+            SchoolAPIClient.API.getMisTime(cityCode = mySchoolCode,
+                schoolCode = mySchoolNum,
+                grade = mySchoolGrade,
+                className = mySchoolClass,
+                startDay = startDay.toString(),
+                endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate> {
                 override fun onResponse(
                     call: Call<SchoolTimeDate>,
-                    response: Response<SchoolTimeDate>
+                    response: Response<SchoolTimeDate>,
                 ) {
-                    if(response.body()!!.misTimetable != null){
-                        for(timeData in response.body()!!.misTimetable){
-                            if(timeData.row != null){
-                                for(data in timeData.row){
+                    if (response.body()!!.misTimetable != null) {
+                        for (timeData in response.body()!!.misTimetable) {
+                            if (timeData.row != null) {
+                                for (data in timeData.row) {
                                     itemlist.add(data)
                                 }
                             }
@@ -119,16 +125,21 @@ class TimeTableFragment(val mySchoolCode: String, val mySchoolNum: String, val m
             })
         }
         else if(mySchoolLevel == "초등학교"){
-            SchoolAPIClient.api.getElsTime(cityCode = mySchoolCode, schoolCode = mySchoolNum, grade = mySchoolGrade, className = mySchoolClass, startDay = startDay.toString(), endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate>{
+            SchoolAPIClient.API.getElsTime(cityCode = mySchoolCode,
+                schoolCode = mySchoolNum,
+                grade = mySchoolGrade,
+                className = mySchoolClass,
+                startDay = startDay.toString(),
+                endDay = endDay.toString()).enqueue(object : Callback<SchoolTimeDate> {
                 override fun onResponse(
                     call: Call<SchoolTimeDate>,
-                    response: Response<SchoolTimeDate>
+                    response: Response<SchoolTimeDate>,
                 ) {
                     println("여기 ${response}")
-                    if(response.body()!!.elsTimetable != null){
-                        for(timeData in response.body()!!.elsTimetable){
-                            if(timeData.row != null){
-                                for(data in timeData.row){
+                    if (response.body()!!.elsTimetable != null) {
+                        for (timeData in response.body()!!.elsTimetable) {
+                            if (timeData.row != null) {
+                                for (data in timeData.row) {
                                     itemlist.add(data)
                                 }
                             }
@@ -160,6 +171,5 @@ class TimeTableFragment(val mySchoolCode: String, val mySchoolNum: String, val m
                 }
             })
         }
-        return binding.root
     }
 }

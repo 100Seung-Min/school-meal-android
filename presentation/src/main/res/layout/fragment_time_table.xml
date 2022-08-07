@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.component.time.TimeTableFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/timeTable_recyclerview"
+   <data>
+      <variable
+          name="timeTable"
+          type="com.example.school_meal.ui.component.time.TimeTableFragment" />
+   </data>
+
+   <FrameLayout
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
+       android:layout_height="wrap_content"
+       tools:context=".ui.component.time.TimeTableFragment">
 
-</FrameLayout>
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/timeTable_recyclerview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+
+   </FrameLayout>
+</layout>

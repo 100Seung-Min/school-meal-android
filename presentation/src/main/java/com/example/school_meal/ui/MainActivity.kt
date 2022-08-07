@@ -13,13 +13,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     var mySchoolGrade: String? = null
     var mySchoolLevel: String? = null
 
-    override fun viewSetting() {
+    override fun init() {
         getData()
         settingAppBar()
         settingBottomNav()
     }
 
-    override fun observeEvent() {
+    override fun observe() {
     }
 
     private fun getData(){

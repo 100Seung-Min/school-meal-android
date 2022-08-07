@@ -1,21 +1,25 @@
 package com.example.school_meal.ui.component.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.ViewDataBinding
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity<T: ViewDataBinding>(private val layoutId: Int): AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding>(
+    @LayoutRes private val layoutId: Int,
+) : AppCompatActivity() {
     protected lateinit var binding: T
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
-        viewSetting()
-        observeEvent()
+        init()
+        observe()
     }
 
-    abstract fun viewSetting()
+    abstract fun init()
 
-    abstract fun observeEvent()
+    abstract fun observe()
 }

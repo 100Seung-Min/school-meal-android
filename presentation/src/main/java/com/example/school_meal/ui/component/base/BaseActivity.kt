@@ -1,4 +1,4 @@
-package com.example.school_meal.ui.base
+package com.example.school_meal.ui.component.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,7 +1,7 @@
 package com.example.school_meal.ui
 
 import com.example.school_meal.R
-import com.example.school_meal.ui.base.BaseActivity
+import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {

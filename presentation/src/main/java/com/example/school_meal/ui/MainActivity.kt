@@ -3,7 +3,9 @@ package com.example.school_meal.ui
 import com.example.school_meal.R
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     var mySchoolCode: String? = null

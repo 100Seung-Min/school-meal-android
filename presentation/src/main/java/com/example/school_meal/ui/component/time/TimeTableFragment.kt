@@ -6,12 +6,14 @@ import com.example.school_meal.R
 import com.example.school_meal.databinding.FragmentTimeTableBinding
 import com.example.school_meal.ui.adapter.SearchTimeAdapter
 import com.example.school_meal.ui.component.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class TimeTableFragment(
     val mySchoolCode: String,
     val mySchoolNum: String,

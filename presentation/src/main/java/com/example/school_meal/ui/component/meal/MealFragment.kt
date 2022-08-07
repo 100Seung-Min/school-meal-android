@@ -8,11 +8,13 @@ import com.example.school_meal.databinding.FragmentMealBinding
 import com.example.school_meal.ui.adapter.SearchMealAdapter
 import com.example.school_meal.ui.component.base.BaseFragment
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 
+@AndroidEntryPoint
 class MealFragment(val mySchoolCode: String, val mySchoolNum: String) :
     BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     val itemlist: ArrayList<dietRow> = ArrayList()

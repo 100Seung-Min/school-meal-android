@@ -11,10 +11,12 @@ import com.example.school_meal.databinding.ActivitySearchBinding
 import com.example.school_meal.ui.MainActivity
 import com.example.school_meal.ui.adapter.SearchSchoolAdapter
 import com.example.school_meal.ui.component.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@AndroidEntryPoint
 class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_search) {
 
     val itemlist: ArrayList<infoRow> = ArrayList()

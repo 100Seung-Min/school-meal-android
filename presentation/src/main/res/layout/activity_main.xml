@@ -21,8 +21,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:titleTextColor="@color/white"/>
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/frame_layout"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/bottom_nav_graph"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
@@ -33,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/bottom_navition_menu" />
+            app:menu="@menu/bottom_navigation_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

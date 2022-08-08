@@ -1,22 +1,16 @@
 package com.example.school_meal.ui
 
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.school_meal.R
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-
-    var mySchoolCode: String? = null
-    var mySchoolName: String? = null
-    var mySchoolNum: String? = null
-    var mySchoolClass: String? = null
-    var mySchoolGrade: String? = null
-    var mySchoolLevel: String? = null
-
     override fun init() {
-        getData()
         settingAppBar()
         settingBottomNav()
     }
@@ -24,23 +18,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun observe() {
     }
 
-    private fun getData(){
-        mySchoolName = intent.getStringExtra("mySchoolName")
-        mySchoolCode = intent.getStringExtra("mySchoolCode")
-        mySchoolNum = intent.getStringExtra("mySchoolNum")
-        mySchoolClass = intent.getStringExtra("mySchoolClass")
-        mySchoolGrade = intent.getStringExtra("mySchoolGrade")
-        mySchoolLevel = intent.getStringExtra("mySchoolLevel")
-    }
-
     private fun settingAppBar(){
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
-        supportActionBar!!.title = mySchoolName
+        supportActionBar!!.title = getSharedPreferences("MY_SCHOOL", MODE_PRIVATE).getString("mySchoolName", "")
     }
 
     private fun settingBottomNav(){
-
+        val navController = supportFragmentManager.findFragmentById(R.id.frame_layout)?.findNavController()
+        val nav = binding.bottomNavigation as BottomNavigationView
+        navController?.let {
+            nav.setupWithNavController(navController)
+        }
     }
 }

@@ -1,10 +1,10 @@
 package com.example.domain.entity
 
 data class ElsTimeEntity(
-    val elsTimetable : List<Timetable>
+    val elsTimetable : List<Timetable?>
 ) {
     data class Timetable(
-        val row: List<TimeDateRow>
+        val row: List<TimeDateRow>?
     ) {
         data class TimeDateRow(
             val time: String,

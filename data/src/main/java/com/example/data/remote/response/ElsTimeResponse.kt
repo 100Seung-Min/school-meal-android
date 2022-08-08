@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class ElsTimeResponse(
     @SerializedName("elsTimetable")
-    val elsTimetable : List<Timetable>
+    val elsTimetable : List<Timetable?>
 ) {
     data class Timetable(
         @SerializedName("row")
-        val row: List<TimeDateRow>,
+        val row: List<TimeDateRow>?
     ) {
         data class TimeDateRow(
             @SerializedName("PERIO")
@@ -24,11 +24,11 @@ data class ElsTimeResponse(
         )
     }
 
-    fun Timetable.toEntity() = ElsTimeEntity.Timetable(
-        row = row.map { it.toEntity() }
+    fun Timetable?.toEntity() = ElsTimeEntity.Timetable(
+        row = this?.row?.map { it.toEntity() } ?: null
     )
 }
 
 fun ElsTimeResponse.toEntity() = ElsTimeEntity(
-    elsTimetable = elsTimetable.map { it.toEntity() }
+    elsTimetable = elsTimetable.map { it?.toEntity() }
 )

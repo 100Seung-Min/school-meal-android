@@ -1,10 +1,10 @@
 package com.example.domain.entity
 
 data class SchoolEntity(
-    val schoolInfo: List<SchoolInfo>
+    val schoolInfo: List<SchoolInfo?>
 ) {
     data class SchoolInfo(
-        val row: List<InfoRow>
+        val row: List<InfoRow>?
     ) {
         data class InfoRow(
             val schoolName: String,

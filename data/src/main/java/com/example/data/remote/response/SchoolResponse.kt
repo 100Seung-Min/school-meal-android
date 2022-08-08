@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class SchoolResponse(
     @SerializedName("schoolInfo")
-    val schoolInfo: List<SchoolInfo>
+    val schoolInfo: List<SchoolInfo?>
 ) {
     data class SchoolInfo(
         @SerializedName("row")
-        val row: List<InfoRow>
+        val row: List<InfoRow>?
     ) {
         data class InfoRow(
             @SerializedName("SCHUL_NM")
@@ -30,11 +30,11 @@ data class SchoolResponse(
         )
     }
 
-    fun SchoolInfo.toEntity() = SchoolEntity.SchoolInfo(
-        row = row.map { it.toEntity() }
+    fun SchoolInfo?.toEntity() = SchoolEntity.SchoolInfo(
+        row = this?.row?.map { it.toEntity() } ?: null
     )
 }
 
 fun SchoolResponse.toEntity() = SchoolEntity(
-    schoolInfo = schoolInfo.map { it.toEntity() }
+    schoolInfo = schoolInfo.map { it?.toEntity() }
 )

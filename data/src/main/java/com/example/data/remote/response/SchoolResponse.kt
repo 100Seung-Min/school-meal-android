@@ -1,5 +1,6 @@
 package com.example.data.remote.response
 
+import com.example.domain.entity.SchoolEntity
 import com.google.gson.annotations.SerializedName
 
 data class SchoolResponse(
@@ -20,5 +21,20 @@ data class SchoolResponse(
             @SerializedName("SCHUL_KND_SC_NM")
             val schoolType: String
         )
+
+        fun InfoRow.toEntity() = SchoolEntity.SchoolInfo.InfoRow(
+            schoolName = schoolName,
+            cityCode = cityCode,
+            schoolCode = schoolCode,
+            schoolType = schoolType
+        )
     }
+
+    fun SchoolInfo.toEntity() = SchoolEntity.SchoolInfo(
+        row = row.map { it.toEntity() }
+    )
 }
+
+fun SchoolResponse.toEntity() = SchoolEntity(
+    schoolInfo = schoolInfo.map { it.toEntity() }
+)

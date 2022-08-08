@@ -13,8 +13,9 @@ interface MealAPI {
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
+        @Query("MLSV_YMD") mealMonth: String = SimpleDateFormat("yyyyMM").format(Date()),
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
-        @Query("MLSV_YMD") mealMonth: String = SimpleDateFormat("yyyyMM").format(Date()),
+        @Query("MMEAL_SC_CODE") mealType: String
     ): MealResponse
 }

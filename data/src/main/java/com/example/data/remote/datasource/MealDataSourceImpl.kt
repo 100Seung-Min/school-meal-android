@@ -10,9 +10,9 @@ class MealDataSourceImpl @Inject constructor(
     override suspend fun getMeal(
         cityCode: String,
         schoolCode: String,
-        mealMonth: String,
+        mealType: String,
     ): MealResponse {
-        return mealAPI.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealMonth = mealMonth)
+        return mealAPI.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealType = mealType)
     }
 
 }

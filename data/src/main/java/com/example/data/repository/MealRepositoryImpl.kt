@@ -12,8 +12,8 @@ class MealRepositoryImpl @Inject constructor(
     override suspend fun getMeal(
         cityCode: String,
         schoolCode: String,
-        mealMonth: String,
+        mealType: String,
     ): MealEntity {
-        return mealDataSource.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealMonth = mealMonth).toEntity()
+        return mealDataSource.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealType = mealType).toEntity()
     }
 }

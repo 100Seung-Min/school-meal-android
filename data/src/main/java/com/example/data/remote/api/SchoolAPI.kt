@@ -1,6 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.data.remote.response.SchoolInfoData
+import com.example.data.remote.response.SchoolResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,5 +12,5 @@ interface SchoolAPI {
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
         @Query("SCHUL_NM") schoolName: String
-    ) : SchoolInfoData
+    ) : SchoolResponse
 }

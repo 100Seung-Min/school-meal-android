@@ -1,6 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.data.remote.response.SchoolMealData
+import com.example.data.remote.response.MealResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.text.SimpleDateFormat
@@ -16,5 +16,5 @@ interface MealAPI {
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("MLSV_YMD") mealMonth: String = SimpleDateFormat("yyyyMM").format(Date()),
-    ): SchoolMealData
+    ): MealResponse
 }

@@ -6,6 +6,9 @@ import com.example.data.remote.datasource.TimeDataSourceImpl
 import com.example.data.repository.MealRepositoryImpl
 import com.example.data.repository.SchoolRepositoryImpl
 import com.example.data.repository.TimeRepositoryImpl
+import com.example.domain.repository.MealRepository
+import com.example.domain.repository.SchoolRepository
+import com.example.domain.repository.TimeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,13 +20,13 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideMealRepository(dataSource: MealDataSourceImpl) = MealRepositoryImpl(dataSource)
+    fun provideMealRepository(dataSource: MealDataSourceImpl): MealRepository = MealRepositoryImpl(dataSource)
 
     @Provides
     @Singleton
-    fun provideSchoolRepository(dataSource: SchoolDataSourceImpl) = SchoolRepositoryImpl(dataSource)
+    fun provideSchoolRepository(dataSource: SchoolDataSourceImpl): SchoolRepository = SchoolRepositoryImpl(dataSource)
 
     @Provides
     @Singleton
-    fun provideTimeRepository(dataSource: TimeDataSourceImpl) = TimeRepositoryImpl(dataSource)
+    fun provideTimeRepository(dataSource: TimeDataSourceImpl): TimeRepository = TimeRepositoryImpl(dataSource)
 }

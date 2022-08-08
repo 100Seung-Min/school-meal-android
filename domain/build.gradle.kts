@@ -1,9 +1,6 @@
 plugins {
-    id("com.android.application")
-    id("dagger.hilt.android.plugin")
-    kotlin("android")
-    kotlin("kapt")
-    id("kotlin-android")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -14,6 +11,7 @@ android {
         targetSdk = Versions.TARGET_SDK_VERSION
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,7 +38,7 @@ dependencies {
 
     implementation(Dependency.Google.MATERIAL)
     implementation(Dependency.Google.HILT_ANDROID)
-    kapt(Dependency.Google.HILT_ANDROID_COMPILER)
+    implementation(Dependency.Google.HILT_ANDROID_COMPILER)
 
     testImplementation(Dependency.UnitTest.JUNIT)
 
@@ -52,5 +50,5 @@ dependencies {
     implementation(Dependency.Libraries.OKHTTP)
     implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
     implementation(Dependency.Libraries.MOSHI)
-    kapt(Dependency.Libraries.MOSHI_COMPILER)
+    implementation(Dependency.Libraries.MOSHI_COMPILER)
 }

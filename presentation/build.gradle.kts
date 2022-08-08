@@ -1,16 +1,15 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    kotlin("android")
-    kotlin("kapt")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
     compileSdk = Versions.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.moizaandroid.moiza"
+        applicationId = "com.example.school_meal"
         minSdk = Versions.MIN_SDK_VERSION
         targetSdk = Versions.TARGET_SDK_VERSION
         versionCode = 1
@@ -46,11 +45,18 @@ android {
         kotlinCompilerExtensionVersion = Versions.COMPOSE
         kotlinCompilerVersion = Versions.KOTLIN_VERSION
     }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+    packagingOptions.resources.excludes += setOf(
+        "META-INF/DEPENDENCIES",
+        "META-INF/LICENSE",
+        "META-INF/LICENSE.txt",
+        "META-INF/license.txt",
+        "META-INF/NOTICE",
+        "META-INF/NOTICE.txt",
+        "META-INF/INDEX.LIST",
+        "META-INF/notice.txt",
+        "META-INF/ASL2.0",
+        "META-INF/gradle/incremental.annotation.processors"
+    )
 }
 
 dependencies {

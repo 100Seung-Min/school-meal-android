@@ -1,13 +1,13 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.SchoolAPI
-import com.example.data.remote.response.SchoolInfoData
+import com.example.data.remote.response.SchoolResponse
 import javax.inject.Inject
 
 class SchoolDataSourceImpl @Inject constructor(
     private val schoolAPI: SchoolAPI
 ): SchoolDataSource {
-    override suspend fun getSchoolInfo(schoolName: String): SchoolInfoData {
+    override suspend fun getSchoolInfo(schoolName: String): SchoolResponse {
         return schoolAPI.getSchoolInfo(schoolName = schoolName)
     }
 }

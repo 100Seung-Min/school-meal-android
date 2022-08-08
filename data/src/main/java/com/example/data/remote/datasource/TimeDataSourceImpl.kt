@@ -1,7 +1,9 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.TimeAPI
-import com.example.data.remote.response.SchoolTimeDate
+import com.example.data.remote.response.ElsTimeResponse
+import com.example.data.remote.response.HisTimeResponse
+import com.example.data.remote.response.MisTimeResponse
 import javax.inject.Inject
 
 class TimeDataSourceImpl @Inject constructor(
@@ -14,7 +16,7 @@ class TimeDataSourceImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): SchoolTimeDate {
+    ): HisTimeResponse {
         return timeAPI.getHisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)
     }
 
@@ -25,7 +27,7 @@ class TimeDataSourceImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): SchoolTimeDate {
+    ): MisTimeResponse {
         return timeAPI.getMisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)
     }
 
@@ -36,7 +38,7 @@ class TimeDataSourceImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): SchoolTimeDate {
+    ): ElsTimeResponse {
         return timeAPI.getElsTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)
     }
 }

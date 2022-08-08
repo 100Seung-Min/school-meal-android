@@ -1,7 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.MealAPI
-import com.example.data.remote.response.SchoolMealData
+import com.example.data.remote.response.MealResponse
 import javax.inject.Inject
 
 class MealDataSourceImpl @Inject constructor(
@@ -11,7 +11,7 @@ class MealDataSourceImpl @Inject constructor(
         cityCode: String,
         schoolCode: String,
         mealMonth: String,
-    ): SchoolMealData {
+    ): MealResponse {
         return mealAPI.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealMonth = mealMonth)
     }
 

@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface SchoolAPI {
     @GET("schoolInfo")
-    fun getSchoolInfo(
+    suspend fun getSchoolInfo(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",

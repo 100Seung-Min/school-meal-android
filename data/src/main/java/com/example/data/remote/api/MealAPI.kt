@@ -8,7 +8,7 @@ import java.util.*
 
 interface MealAPI {
     @GET("mealServiceDietInfo")
-    fun getMeal(
+    suspend fun getMeal(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",

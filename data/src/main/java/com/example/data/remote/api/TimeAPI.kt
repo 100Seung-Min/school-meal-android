@@ -9,9 +9,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 interface TimeAPI {
-
     @GET("hisTimetable")
-    fun getHisTime(
+    suspend fun getHisTime(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
@@ -28,7 +27,7 @@ interface TimeAPI {
     ): HisTimeResponse
 
     @GET("misTimetable")
-    fun getMisTime(
+    suspend fun getMisTime(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
@@ -45,7 +44,7 @@ interface TimeAPI {
     ): MisTimeResponse
 
     @GET("elsTimetable")
-    fun getElsTime(
+    suspend fun getElsTime(
         @Query("KEY") key: String = "dfed562db5ef4e88b1e71079c0039615",
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",

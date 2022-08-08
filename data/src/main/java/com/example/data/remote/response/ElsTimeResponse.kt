@@ -1,5 +1,6 @@
 package com.example.data.remote.response
 
+import com.example.domain.entity.ElsTimeEntity
 import com.google.gson.annotations.SerializedName
 
 data class ElsTimeResponse(
@@ -8,13 +9,26 @@ data class ElsTimeResponse(
 ) {
     data class Timetable(
         @SerializedName("row")
-        val row: List<TimeDateRow>
+        val row: List<TimeDateRow>,
     ) {
         data class TimeDateRow(
             @SerializedName("PERIO")
             val time: String,
             @SerializedName("ITRT_CNTNT")
-            val timeName: String
+            val timeName: String,
+        )
+
+        fun TimeDateRow.toEntity() = ElsTimeEntity.Timetable.TimeDateRow(
+            time = time,
+            timeName = timeName
         )
     }
+
+    fun Timetable.toEntity() = ElsTimeEntity.Timetable(
+        row = row.map { it.toEntity() }
+    )
 }
+
+fun ElsTimeResponse.toEntity() = ElsTimeEntity(
+    elsTimetable = elsTimetable.map { it.toEntity() }
+)

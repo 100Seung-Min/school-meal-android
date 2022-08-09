@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class HisTimeResponse(
     @SerializedName("hisTimetable")
-    val hisTimetable : List<TimeResponse?>
+    val hisTimetable : List<TimeResponse?>?
 )
 
 fun HisTimeResponse.toEntity() = HisTimeEntity(
-    hisTimetable = hisTimetable.map { it?.toEntity() }
+    hisTimetable = hisTimetable?.map { it?.toEntity() } ?: null
 )

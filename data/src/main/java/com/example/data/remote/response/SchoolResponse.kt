@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SchoolResponse(
     @SerializedName("schoolInfo")
-    val schoolInfo: List<SchoolInfo?>
+    val schoolInfo: List<SchoolInfo?>?
 ) {
     data class SchoolInfo(
         @SerializedName("row")
@@ -36,5 +36,5 @@ data class SchoolResponse(
 }
 
 fun SchoolResponse.toEntity() = SchoolEntity(
-    schoolInfo = schoolInfo.map { it?.toEntity() }
+    schoolInfo = schoolInfo?.map { it?.toEntity() } ?: null
 )

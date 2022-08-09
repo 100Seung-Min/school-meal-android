@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class MealResponse(
     @SerializedName("mealServiceDietInfo")
-    val mealServiceDietInfo: List<MealServiceDietInfo?>,
+    val mealServiceDietInfo: List<MealServiceDietInfo?>?
 ) {
     data class MealServiceDietInfo(
         @SerializedName("row")
-        val row: List<DietRow>?,
+        val row: List<DietRow>?
     ) {
         data class DietRow(
             @SerializedName("DDISH_NM")
@@ -27,11 +27,11 @@ data class MealResponse(
         )
     }
 
-    fun MealServiceDietInfo?.toEntity() = MealEntity.MealServiceDietInfo(
-        row = this?.row?.map { it.toEntity() } ?: null
+    fun MealServiceDietInfo.toEntity() = MealEntity.MealServiceDietInfo(
+        row = row?.map { it.toEntity() } ?: null
     )
 }
 
 fun MealResponse.toEntity() = MealEntity(
-    mealServiceDietInfo = mealServiceDietInfo.map { it?.toEntity() }
+    mealServiceDietInfo = mealServiceDietInfo?.map { it?.toEntity() } ?: null
 )

@@ -20,6 +20,6 @@ data class TimeResponse(
     )
 }
 
-fun TimeResponse?.toEntity() = TimeEntity(
-    row = this?.row?.map { it.toEntity() } ?: null
+fun TimeResponse.toEntity() = TimeEntity(
+    row = row?.map { it.toEntity() } ?: null
 )

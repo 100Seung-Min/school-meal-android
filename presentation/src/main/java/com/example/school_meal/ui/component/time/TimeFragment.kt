@@ -34,8 +34,8 @@ class TimeFragment : BaseFragment<FragmentTimeBinding>(R.layout.fragment_time) {
             pref.getString("mySchoolCode", "")!!,
             pref.getString("mySchoolClass", "")!!,
             pref.getString("mySchoolNum", "")!!,
-            "20220504",
-            "20220502",
+            endDay.toString(),
+            startDay.toString(),
             pref.getString("mySchoolGrade", "")!!,
             pref.getString("mySchoolLevel", "")!!
         )
@@ -43,7 +43,6 @@ class TimeFragment : BaseFragment<FragmentTimeBinding>(R.layout.fragment_time) {
 
     private fun timeInfoObserve() {
         timeViewModel.timeInfo.observe(this) {
-            Log.d("안녕", "timeInfoObserve: $it")
             adapter = TimeAdapter(it)
             binding.timeTableRecyclerview.adapter = adapter
             binding.timeTableRecyclerview.layoutManager = LinearLayoutManager(context)

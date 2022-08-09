@@ -6,14 +6,14 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.domain.entity.SchoolEntity.SchoolInfo.InfoRow
 import com.example.school_meal.R
 import com.example.school_meal.databinding.ActivitySearchBinding
+import com.example.school_meal.ui.MainActivity
 import com.example.school_meal.ui.adapter.SearchSchoolAdapter
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.domain.entity.SchoolEntity.SchoolInfo.InfoRow
-import com.example.school_meal.ui.MainActivity
 
 @AndroidEntryPoint
 class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_search) {
@@ -32,15 +32,17 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
         schoolInfoObserve()
     }
 
-    fun search(view: View) = with(binding){
-        if(searchSchoolEdit.text.isNullOrEmpty()) {
+    fun search(view: View) {
+        with(binding) {
+            if (searchSchoolEdit.text.isNullOrEmpty()) {
 
-        } else if(gradeEdit.text.isNullOrEmpty()) {
+            } else if (gradeEdit.text.isNullOrEmpty()) {
 
-        } else if(classEdit.text.isNullOrEmpty()) {
+            } else if (classEdit.text.isNullOrEmpty()) {
 
-        } else {
-            searchViewModel.search(searchSchoolEdit.text.toString())
+            } else {
+                searchViewModel.search(searchSchoolEdit.text.toString())
+            }
         }
     }
 

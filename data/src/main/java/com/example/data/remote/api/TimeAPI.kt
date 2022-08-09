@@ -16,9 +16,6 @@ interface TimeAPI {
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
-        @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
-                .toInt() < 7
-        ) "1" else "2",
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
@@ -33,9 +30,6 @@ interface TimeAPI {
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
-        @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
-                .toInt() < 7
-        ) "1" else "2",
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,
@@ -50,9 +44,6 @@ interface TimeAPI {
         @Query("Type") type: String = "json",
         @Query("pIndex") index: String = "1",
         @Query("pSize") size: String = "100",
-        @Query("SEM") term: String = if (SimpleDateFormat("MM").format(Date())
-                .toInt() < 7
-        ) "1" else "2",
         @Query("ATPT_OFCDC_SC_CODE") cityCode: String,
         @Query("SD_SCHUL_CODE") schoolCode: String,
         @Query("GRADE") grade: String,

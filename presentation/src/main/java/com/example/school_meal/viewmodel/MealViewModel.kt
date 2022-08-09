@@ -18,13 +18,11 @@ class MealViewModel @Inject constructor(
     private val _mealInfo = MutableLiveData<List<MealEntity.MealServiceDietInfo.DietRow>>()
     val mealInfo: LiveData<List<MealEntity.MealServiceDietInfo.DietRow>> get() = _mealInfo
 
-    fun meal(cityCode: String, schoolCode: String, mealType: String) {
-        try {
-            viewModelScope.launch {
-                _mealInfo.value = mealUseCase.execute(cityCode, schoolCode, mealType).mealServiceDietInfo.get(1)?.row!!
+    fun meal(cityCode: String, schoolCode: String, mealType: String)  = viewModelScope.launch {
+        mealUseCase.execute(cityCode, schoolCode, mealType).let { response ->
+            if(response?.mealServiceDietInfo != null) {
+                _mealInfo.value = response.mealServiceDietInfo?.get(1)?.row!!
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }

@@ -21,18 +21,24 @@ class TimeViewModel @Inject constructor(
     private val _timeInfo = MutableLiveData<List<TimeEntity.TimeDateRow>>()
     val timeInfo: LiveData<List<TimeEntity.TimeDateRow>> get() = _timeInfo
 
-    fun time(cityCode: String, className: String, schoolCode: String, endDay: String, startDay: String, grade: String, type: String) {
-        try {
-            viewModelScope.launch {
-                _timeInfo.value = when(type) {
-                    "고등학교" -> hisTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).hisTimetable.get(1)?.row!!
-                    "중학교" -> misTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).misTimetable.get(1)?.row!!
-                    "초등학교" -> elsTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).elsTimetable.get(1)?.row!!
-                    else -> listOf()
-                }
+    fun time(cityCode: String, className: String, schoolCode: String, endDay: String, startDay: String, grade: String, type: String) = viewModelScope.launch {
+        _timeInfo.value = when(type) {
+            "고등학교" -> hisTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).let { response ->
+                if(response?.hisTimetable != null) {
+                    response.hisTimetable?.get(1)?.row!!
+                } else listOf()
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
+            "중학교" -> misTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).let { response ->
+                if(response?.misTimetable != null) {
+                    response.misTimetable?.get(1)?.row!!
+                } else listOf()
+            }
+            "초등학교" -> elsTimeUseCase.execute(cityCode, className, schoolCode, endDay, startDay, grade).let { response ->
+                if(response?.elsTimetable != null) {
+                    response.elsTimetable?.get(1)?.row!!
+                } else listOf()
+            }
+            else -> listOf()
         }
     }
 }

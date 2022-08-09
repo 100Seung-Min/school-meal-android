@@ -18,13 +18,11 @@ class SearchViewModel @Inject constructor(
     private val _schoolInfo = MutableLiveData<List<SchoolEntity.SchoolInfo.InfoRow>>()
     val schoolInfo: LiveData<List<SchoolEntity.SchoolInfo.InfoRow>> get() = _schoolInfo
 
-    fun search(schoolName: String) {
-        try {
-            viewModelScope.launch {
-                _schoolInfo.value = searchUseCase.execute(schoolName).schoolInfo.get(1)?.row!!
+    fun search(schoolName: String) = viewModelScope.launch {
+        searchUseCase.execute(schoolName).let { response ->
+            if(response?.schoolInfo != null) {
+                _schoolInfo.value = response.schoolInfo?.get(1)?.row!!
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }

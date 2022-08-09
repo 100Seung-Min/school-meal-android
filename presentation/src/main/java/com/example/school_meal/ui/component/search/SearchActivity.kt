@@ -51,7 +51,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
         val intent = Intent(this, MainActivity::class.java)
         edit.putString("mySchoolName", selectItem.schoolName)
         edit.putString("mySchoolCode", selectItem.cityCode)
-        edit.putString("mySchoolNum", selectItem.cityCode)
+        edit.putString("mySchoolNum", selectItem.schoolCode)
         edit.putString("mySchoolClass", binding.classEdit.text.toString())
         edit.putString("mySchoolGrade", binding.gradeEdit.text.toString())
         edit.putString("mySchoolLevel", selectItem.schoolType)

@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_meal"/>
     <fragment
         android:id="@+id/timeFragment"
-        android:name="com.example.school_meal.ui.component.time.TimeTableFragment"
-        tools:layout="@layout/fragment_time_table"/>
+        android:name="com.example.school_meal.ui.component.time.TimeFragment"
+        tools:layout="@layout/fragment_time"/>
 
 </navigation>

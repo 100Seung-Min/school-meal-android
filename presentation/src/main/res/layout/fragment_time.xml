@@ -4,14 +4,14 @@
 
    <data>
       <variable
-          name="timeTable"
-          type="com.example.school_meal.ui.component.time.TimeTableFragment" />
+          name="time"
+          type="com.example.school_meal.ui.component.time.TimeFragment" />
    </data>
 
    <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       tools:context=".ui.component.time.TimeTableFragment">
+       tools:context=".ui.component.time.TimeFragment">
 
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/timeTable_recyclerview"

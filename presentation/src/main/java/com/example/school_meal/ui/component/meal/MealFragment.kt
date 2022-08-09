@@ -38,8 +38,7 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     }
 
     private fun setRecyclerView() {
-        Log.d("안녕", "setRecyclerView: ${mealViewModel.mealInfo.value}")
-        mealAdapter = MealAdapter(mealViewModel.mealInfo.value, context)
+        mealAdapter = MealAdapter(mealViewModel.mealInfo.value)
         with(binding.resultMealRecyclerview) {
             adapter = mealAdapter
             layoutManager = GridLayoutManager(context, 5)

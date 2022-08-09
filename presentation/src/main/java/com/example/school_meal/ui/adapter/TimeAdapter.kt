@@ -7,17 +7,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.TimeEntity
 import com.example.school_meal.R
+import com.example.school_meal.databinding.ItemTimeBinding
 
 class TimeAdapter(val itemList: List<TimeEntity.TimeDateRow>): RecyclerView.Adapter<TimeAdapter.ViewHolder>() {
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(val binding: ItemTimeBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TimeEntity.TimeDateRow) {
-            itemView.findViewById<TextView>(R.id.text123).text = item.timeName
+            binding.timeItem = item
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context).inflate(R.layout.item_timetable, parent, false)
-        return ViewHolder(layoutInflater)
+        return ViewHolder(
+            ItemTimeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

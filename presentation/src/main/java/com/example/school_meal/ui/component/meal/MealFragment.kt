@@ -21,9 +21,10 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     lateinit var mealAdapter: MealAdapter
 
     override fun init() {
+        pref = requireContext().getSharedPreferences("MY_SCHOOL", AppCompatActivity.MODE_PRIVATE)
+        mealViewModel.meal(pref.getString("mySchoolCode", "")!!, pref.getString("mySchoolNum", "")!!, "1")
         search()
         mealInfoObserve()
-        pref = requireContext().getSharedPreferences("MY_SCHOOL", AppCompatActivity.MODE_PRIVATE)
     }
 
     private fun search() = binding.mealTablayout.onTabSelected {

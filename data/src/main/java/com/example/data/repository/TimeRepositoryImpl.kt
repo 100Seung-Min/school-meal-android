@@ -18,8 +18,8 @@ class TimeRepositoryImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): HisTimeEntity {
-        return timeDataSource.getHisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay).toEntity()
+    ): HisTimeEntity? {
+        return timeDataSource.getHisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)?.toEntity()
     }
 
     override suspend fun getMisTime(
@@ -29,8 +29,8 @@ class TimeRepositoryImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): MisTimeEntity {
-        return timeDataSource.getMisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay).toEntity()
+    ): MisTimeEntity? {
+        return timeDataSource.getMisTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)?.toEntity()
     }
 
     override suspend fun getElsTime(
@@ -40,7 +40,7 @@ class TimeRepositoryImpl @Inject constructor(
         className: String,
         startDay: String,
         endDay: String,
-    ): ElsTimeEntity {
-        return timeDataSource.getElsTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay).toEntity()
+    ): ElsTimeEntity? {
+        return timeDataSource.getElsTime(cityCode = cityCode, schoolCode = schoolCode, grade = grade, className = className, startDay = startDay, endDay = endDay)?.toEntity()
     }
 }

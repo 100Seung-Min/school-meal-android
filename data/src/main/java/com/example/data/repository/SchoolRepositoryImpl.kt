@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SchoolRepositoryImpl @Inject constructor(
     private val schoolDataSource: SchoolDataSourceImpl
 ): SchoolRepository {
-    override suspend fun getSchoolInfo(schoolName: String): SchoolEntity {
-        return schoolDataSource.getSchoolInfo(schoolName = schoolName).toEntity()
+    override suspend fun getSchoolInfo(schoolName: String): SchoolEntity? {
+        return schoolDataSource.getSchoolInfo(schoolName = schoolName)?.toEntity()
     }
 }

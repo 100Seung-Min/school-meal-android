@@ -13,7 +13,7 @@ class MealRepositoryImpl @Inject constructor(
         cityCode: String,
         schoolCode: String,
         mealType: String,
-    ): MealEntity {
-        return mealDataSource.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealType = mealType).toEntity()
+    ): MealEntity? {
+        return mealDataSource.getMeal(cityCode = cityCode, schoolCode = schoolCode, mealType = mealType)?.toEntity()
     }
 }

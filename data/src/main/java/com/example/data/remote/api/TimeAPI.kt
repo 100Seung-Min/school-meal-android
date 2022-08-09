@@ -3,6 +3,7 @@ package com.example.data.remote.api
 import com.example.data.remote.response.ElsTimeResponse
 import com.example.data.remote.response.HisTimeResponse
 import com.example.data.remote.response.MisTimeResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.text.SimpleDateFormat
@@ -24,7 +25,7 @@ interface TimeAPI {
         @Query("CLASS_NM") className: String,
         @Query("TI_FROM_YMD") startDay: String,
         @Query("TI_TO_YMD") endDay: String,
-    ): HisTimeResponse
+    ): Response<HisTimeResponse>
 
     @GET("misTimetable")
     suspend fun getMisTime(
@@ -41,7 +42,7 @@ interface TimeAPI {
         @Query("CLASS_NM") className: String,
         @Query("TI_FROM_YMD") startDay: String,
         @Query("TI_TO_YMD") endDay: String,
-    ): MisTimeResponse
+    ): Response<MisTimeResponse>
 
     @GET("elsTimetable")
     suspend fun getElsTime(
@@ -58,5 +59,5 @@ interface TimeAPI {
         @Query("CLASS_NM") className: String,
         @Query("TI_FROM_YMD") startDay: String,
         @Query("TI_TO_YMD") endDay: String,
-    ): ElsTimeResponse
+    ): Response<ElsTimeResponse>
 }

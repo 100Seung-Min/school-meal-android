@@ -1,5 +1,7 @@
 package com.example.school_meal.ui.adapter
 
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -7,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.MealEntity
 import com.example.school_meal.R
 import com.example.school_meal.databinding.ItemMealBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MealAdapter(
@@ -32,6 +36,10 @@ class MealAdapter(
             }
             binding.schoolMealDateTxt.text =  "${item.mealDay.slice(4..5)}월 ${item.mealDay.slice(6 until item.mealDay.length)}일"
             binding.schoolMealTxt.text = content
+            val today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+            if(today.equals(item.mealDay)) {
+                binding.findMealLayout.setBackgroundColor(Color.GREEN)
+            }
         }
     }
 

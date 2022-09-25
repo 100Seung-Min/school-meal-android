@@ -4,9 +4,20 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/School_Meal.iml" filepath="$PROJECT_DIR$/.idea/modules/School_Meal.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/School_Meal.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/School_Meal.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/School_Meal.data.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/data/School_Meal.data.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/School_Meal.data.main.iml" filepath="$PROJECT_DIR$/.idea/modules/data/School_Meal.data.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/School_Meal.data.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/data/School_Meal.data.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/School_Meal.domain.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/School_Meal.presentation.iml" filepath="$PROJECT_DIR$/.idea/modules/app/School_Meal.presentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/School_Meal.presentation.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.main.iml" filepath="$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.test.iml" filepath="$PROJECT_DIR$/.idea/modules/school-meal.buildSrc.test.iml" />
     </modules>
   </component>
 </project>

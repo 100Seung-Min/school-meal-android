@@ -39,11 +39,6 @@ android {
     }
     buildFeatures {
         dataBinding = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.COMPOSE
-        kotlinCompilerVersion = Versions.KOTLIN_VERSION
     }
     packagingOptions.resources.excludes += setOf(
         "META-INF/DEPENDENCIES",
@@ -78,13 +73,6 @@ dependencies {
     implementation(Dependency.Google.MATERIAL)
     implementation(Dependency.Google.HILT_ANDROID)
     kapt(Dependency.Google.HILT_ANDROID_COMPILER)
-    implementation(Dependency.Google.COMPOSE_ACTIVITY)
-    implementation(Dependency.Google.COMPOSE_MATERIAL)
-    implementation(Dependency.Google.COMPOSE_PREVIEW)
-    implementation(Dependency.Google.COMPOSE_UI)
-    implementation(Dependency.Google.COMPOSE_NAV)
-    androidTestImplementation(Dependency.Google.COMPOSE_TEST)
-    debugImplementation(Dependency.Google.COMPOSE_UI_TOOL)
 
     implementation(Dependency.Libraries.RETROFIT)
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)

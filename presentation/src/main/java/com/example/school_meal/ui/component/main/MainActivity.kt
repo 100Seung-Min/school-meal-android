@@ -1,4 +1,4 @@
-package com.example.school_meal.ui
+package com.example.school_meal.ui.component.main
 
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController

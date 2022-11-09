@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.School_Meal">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.component.main.MainActivity"
             android:exported="false" />
         <activity
             android:name="com.example.school_meal.ui.component.search.SearchActivity"

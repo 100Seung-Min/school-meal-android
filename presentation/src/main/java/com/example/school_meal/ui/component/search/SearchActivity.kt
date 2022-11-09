@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.domain.entity.SchoolEntity.SchoolInfo.InfoRow
 import com.example.school_meal.R
 import com.example.school_meal.databinding.ActivitySearchBinding
-import com.example.school_meal.ui.MainActivity
+import com.example.school_meal.ui.component.main.MainActivity
 import com.example.school_meal.ui.adapter.SearchSchoolAdapter
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.viewmodel.SearchViewModel

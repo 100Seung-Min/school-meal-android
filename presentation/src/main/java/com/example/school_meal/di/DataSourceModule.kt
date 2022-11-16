@@ -1,8 +1,10 @@
 package com.example.school_meal.di
 
+import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.MealAPI
 import com.example.data.remote.api.SchoolAPI
 import com.example.data.remote.api.TimeAPI
+import com.example.data.remote.datasource.AuthDataSourceImpl
 import com.example.data.remote.datasource.MealDataSourceImpl
 import com.example.data.remote.datasource.SchoolDataSourceImpl
 import com.example.data.remote.datasource.TimeDataSourceImpl
@@ -26,4 +28,8 @@ object DataSourceModule {
     @Provides
     @Singleton
     fun provideTimeDataSource(service: TimeAPI) = TimeDataSourceImpl(service)
+
+    @Provides
+    @Singleton
+    fun provideAuthDataSource(service: AuthAPI) = AuthDataSourceImpl(service)
 }

@@ -1,5 +1,6 @@
 package com.example.school_meal.di
 
+import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.MealAPI
 import com.example.data.remote.api.SchoolAPI
 import com.example.data.remote.api.TimeAPI
@@ -64,5 +65,11 @@ object NetworkModule {
     @Singleton
     fun provideTimeService(retrofit: Retrofit): TimeAPI {
         return retrofit.create(TimeAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthService(retrofit: Retrofit): AuthAPI {
+        return retrofit.create(AuthAPI::class.java)
     }
 }

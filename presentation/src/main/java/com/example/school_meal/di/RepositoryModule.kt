@@ -1,11 +1,14 @@
 package com.example.school_meal.di
 
+import com.example.data.remote.datasource.AuthDataSourceImpl
 import com.example.data.remote.datasource.MealDataSourceImpl
 import com.example.data.remote.datasource.SchoolDataSourceImpl
 import com.example.data.remote.datasource.TimeDataSourceImpl
+import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.MealRepositoryImpl
 import com.example.data.repository.SchoolRepositoryImpl
 import com.example.data.repository.TimeRepositoryImpl
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.MealRepository
 import com.example.domain.repository.SchoolRepository
 import com.example.domain.repository.TimeRepository
@@ -29,4 +32,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideTimeRepository(dataSource: TimeDataSourceImpl): TimeRepository = TimeRepositoryImpl(dataSource)
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(dataSource: AuthDataSourceImpl): AuthRepository = AuthRepositoryImpl(dataSource)
 }

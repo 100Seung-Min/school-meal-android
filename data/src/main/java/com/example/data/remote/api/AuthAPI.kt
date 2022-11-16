@@ -5,15 +5,16 @@ import com.example.data.remote.request.SignUpRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface AuthAPI {
-    @GET("auth/login")
+    @POST("auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<Boolean>
 
-    @GET("auth/signUp")
+    @POST("auth/signUp")
     suspend fun signUp(
         @Body signUpRequest: SignUpRequest
     )

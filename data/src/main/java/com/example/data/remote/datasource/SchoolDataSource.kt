@@ -1,7 +1,7 @@
 package com.example.data.remote.datasource
 
-import com.example.data.remote.response.SchoolResponse
+import com.example.data.remote.response.SchoolInfoResponse
 
 interface SchoolDataSource {
-    suspend fun getSchoolInfo(schoolName: String): SchoolResponse?
+    suspend fun schoolInfo(schoolName: String): SchoolInfoResponse?
 }

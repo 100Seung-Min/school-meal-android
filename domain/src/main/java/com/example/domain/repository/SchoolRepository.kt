@@ -1,7 +1,7 @@
 package com.example.domain.repository
 
-import com.example.domain.entity.SchoolEntity
+import com.example.domain.entity.SchoolInfoEntity
 
 interface SchoolRepository {
-    suspend fun getSchoolInfo(schoolName: String): SchoolEntity?
+    suspend fun schoolInfo(schoolName: String): SchoolInfoEntity?
 }

@@ -1,9 +1,7 @@
 package com.example.school_meal.di
 
 import com.example.data.remote.api.AuthAPI
-import com.example.data.remote.api.MealAPI
 import com.example.data.remote.api.SchoolAPI
-import com.example.data.remote.api.TimeAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +15,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    const val BASE_URL = "https://open.neis.go.kr/hub/"
-
+//        #  address: 10.53.68.142 # 학교 ap01
+//    address: 10.82.19.2 # 학교 wi_gen
+//    #  address: 192.168.16.42 # 핫스팟
+    const val BASE_URL = "http://10.82.19.2:8080/"
     @Provides
     @Singleton
     fun provideHttpClient(): OkHttpClient {
@@ -51,25 +51,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideSchoolService(retrofit: Retrofit): SchoolAPI {
-        return retrofit.create(SchoolAPI::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideMealService(retrofit: Retrofit): MealAPI {
-        return retrofit.create(MealAPI::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideTimeService(retrofit: Retrofit): TimeAPI {
-        return retrofit.create(TimeAPI::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideAuthService(retrofit: Retrofit): AuthAPI {
         return retrofit.create(AuthAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSchoolService(retrofit: Retrofit): SchoolAPI {
+        return retrofit.create(SchoolAPI::class.java)
     }
 }

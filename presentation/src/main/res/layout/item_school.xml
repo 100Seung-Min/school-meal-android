@@ -4,7 +4,7 @@
     <data>
         <variable
             name="schoolItem"
-            type="com.example.domain.entity.SchoolEntity.SchoolInfo.InfoRow" />
+            type="com.example.domain.entity.SchoolInfoEntity.SchoolInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,10 +13,10 @@
 
         <TextView
             android:id="@+id/find_school_text"
+            android:text="@{schoolItem.schoolName}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="@{schoolItem.schoolName}" />
+            android:textSize="30sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

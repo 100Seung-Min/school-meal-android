@@ -7,4 +7,5 @@ interface AuthRepository {
     suspend fun login(loginParam: LoginParam): Boolean
     suspend fun signUp(signUpParam: SignUpParam)
     suspend fun sendMsg(phone: String): String
+    suspend fun saveId(id: String)
 }

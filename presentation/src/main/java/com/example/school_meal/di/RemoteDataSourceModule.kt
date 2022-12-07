@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataSourceModule {
+object RemoteDataSourceModule {
     @Provides
     @Singleton
     fun provideAuthDataSource(service: AuthAPI) = AuthDataSourceImpl(service)

@@ -1,5 +1,6 @@
 package com.example.school_meal.di
 
+import com.example.data.interceptor.IdInterceptor
 import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.SchoolAPI
 import dagger.Module

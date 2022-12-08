@@ -16,17 +16,21 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-//        #  address: 10.53.68.142 # 학교 ap01
+    //        #  address: 10.53.68.142 # 학교 ap01
 //    address: 10.82.19.2 # 학교 wi_gen
 //    #  address: 192.168.16.42 # 핫스팟
     const val BASE_URL = "http://10.82.19.2:8080/"
+
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(
+        idInterceptor: IdInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(10, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(idInterceptor)
             .build()
     }
 
@@ -39,7 +43,6 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .client(provideHttpClient())
             .addConverterFactory(gsonConverterFactory)
             .build()
     }

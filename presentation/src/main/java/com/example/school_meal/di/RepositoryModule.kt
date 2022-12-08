@@ -7,6 +7,7 @@ import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.SchoolRepositoryImpl
 import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.SchoolRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,12 +16,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
-    @Provides
-    @Singleton
-    fun provideAuthRepository(dataSource: AuthDataSourceImpl): AuthRepository = AuthRepositoryImpl(dataSource)
+abstract class RepositoryModule {
+    @Binds
+    abstract fun provideAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
 
-    @Provides
-    @Singleton
-    fun provideSchoolRepository(dataSource: SchoolDataSourceImpl): SchoolRepository = SchoolRepositoryImpl(dataSource)
+    @Binds
+    abstract fun provideSchoolRepository(
+        schoolRepositoryImpl: SchoolRepositoryImpl
+    ): SchoolRepository
 }

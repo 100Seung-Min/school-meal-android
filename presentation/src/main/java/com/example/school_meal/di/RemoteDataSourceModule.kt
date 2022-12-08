@@ -2,8 +2,11 @@ package com.example.school_meal.di
 
 import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.SchoolAPI
+import com.example.data.remote.datasource.AuthDataSource
 import com.example.data.remote.datasource.AuthDataSourceImpl
+import com.example.data.remote.datasource.SchoolDataSource
 import com.example.data.remote.datasource.SchoolDataSourceImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,12 +15,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RemoteDataSourceModule {
-    @Provides
-    @Singleton
-    fun provideAuthDataSource(service: AuthAPI) = AuthDataSourceImpl(service)
+abstract class RemoteDataSourceModule {
+    @Binds
+    abstract fun provideAuthDataSource(
+        authDataSourceImpl: AuthDataSourceImpl
+    ): AuthDataSource
 
-    @Provides
-    @Singleton
-    fun provideSchoolDataSource(service: SchoolAPI) = SchoolDataSourceImpl(service)
+    @Binds
+    abstract fun provideSchoolDataSource(
+        schoolDataSourceImpl: SchoolDataSourceImpl
+    ): SchoolDataSource
 }

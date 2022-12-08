@@ -1,28 +1,42 @@
 package com.example.school_meal.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.MealEntity
-import com.example.domain.usecase.MealUseCase
+import com.example.domain.usecase.school.SchoolMealUseCase
+import com.example.school_meal.ui.extension.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MealViewModel @Inject constructor(
-    private val mealUseCase: MealUseCase
-): ViewModel() {
-    private val _mealInfo = MutableLiveData<List<MealEntity.MealServiceDietInfo.DietRow>>()
-    val mealInfo: LiveData<List<MealEntity.MealServiceDietInfo.DietRow>> get() = _mealInfo
+    private val schoolMealUseCase: SchoolMealUseCase
+) : ViewModel() {
+    private val _mealInfo = SingleLiveEvent<List<MealEntity.MealItem>>()
+    val mealInfo: MutableLiveData<List<MealEntity.MealItem>> get() = _mealInfo
+    private val _currentMeal = SingleLiveEvent<String>()
+    val currentMeal: MutableLiveData<String> get() = _currentMeal
 
-    fun meal(cityCode: String, schoolCode: String, mealType: String)  = viewModelScope.launch {
-        mealUseCase.execute(cityCode, schoolCode, mealType).let { response ->
-            if(response?.mealServiceDietInfo != null) {
-                _mealInfo.value = response.mealServiceDietInfo?.get(1)?.row!!
-            }
+    init {
+        _currentMeal.value = "조식"
+    }
+
+    fun meal(day: String) = viewModelScope.launch {
+        kotlin.runCatching {
+            schoolMealUseCase.execute(day)
+        }.onSuccess {
+            _mealInfo.value = it?.row
+        }.onFailure {
+
+        }
+    }
+
+    fun setMealType(type: String) {
+        if (_currentMeal.value != type) {
+            _currentMeal.value = type
         }
     }
 }

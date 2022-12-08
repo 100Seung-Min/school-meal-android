@@ -10,14 +10,19 @@ data class SchoolInfoResponse(
     data class SchoolInfo(
         @SerializedName("schoolName")
         val schoolName: String,
+        @SerializedName("cityCode")
         val cityCode: String,
+        @SerializedName("schoolCode")
         val schoolCode: String,
+        @SerializedName("schoolClass")
+        val schoolClass: String
     )
 
     fun SchoolInfo.toEntity() = SchoolInfoEntity.SchoolInfo(
         schoolName = schoolName,
         cityCode = cityCode,
-        schoolCode = schoolCode
+        schoolCode = schoolCode,
+        schoolClass = schoolClass
     )
 }
 

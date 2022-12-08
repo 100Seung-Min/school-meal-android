@@ -1,7 +1,6 @@
 package com.example.school_meal.ui.component.register
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -10,7 +9,6 @@ import com.example.school_meal.R
 import com.example.school_meal.databinding.ActivityRegisterBinding
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.ui.component.login.LoginActivity
-import com.example.school_meal.ui.extension.removeDot
 import com.example.school_meal.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +29,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private fun observeCurrentSchool() = registerViewModel.currentSchool.observe(this) {
-        binding.writeSchool.setText(it.schoolName.removeDot())
+        binding.writeSchool.setText(it.schoolName)
     }
 
     fun click(view: View) {
@@ -51,12 +49,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 } else if (binding.writePw.text.toString() != binding.writeRePw.text.toString()) {
                     Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
-//                else if (!binding.writeCertify.isVisible) {
-//                    Toast.makeText(this, "핸드폰 인증을 진행해주세요..", Toast.LENGTH_SHORT).show()
-//                }
-//                else if (binding.writeCertify.text.toString() != registerViewModel.certifyNum.value) {
-//                    Toast.makeText(this, "인증번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-//                }
+                else if (!binding.writeCertify.isVisible) {
+                    Toast.makeText(this, "핸드폰 인증을 진행해주세요..", Toast.LENGTH_SHORT).show()
+                }
+                else if (binding.writeCertify.text.toString() != registerViewModel.certifyNum.value) {
+                    Toast.makeText(this, "인증번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
                 else {
                     registerViewModel.signUp(
                         binding.writeId.text.toString(),

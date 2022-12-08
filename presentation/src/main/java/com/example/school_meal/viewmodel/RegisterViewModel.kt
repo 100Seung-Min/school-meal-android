@@ -1,6 +1,5 @@
 package com.example.school_meal.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,7 +43,6 @@ class RegisterViewModel @Inject constructor(
             sendMsgUseCase.execute(phone)
         }.onSuccess {
             _certifyNum.value = it
-            Log.d("안녕", "sedMsg: $it")
         }
     }
 
@@ -67,7 +65,8 @@ class RegisterViewModel @Inject constructor(
                     currentSchool.value!!.schoolCode,
                     `class`,
                     grade,
-                    name
+                    name,
+                    currentSchool.value!!.schoolClass
                 )
             )
         }.onSuccess {

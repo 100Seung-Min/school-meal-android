@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
-    app:startDestination="@id/timeFragment">
+    app:startDestination="@id/contentFragment">
 
     <fragment
         android:id="@+id/mealFragment"
@@ -13,5 +13,15 @@
         android:id="@+id/timeFragment"
         android:name="com.example.school_meal.ui.component.time.TimeFragment"
         tools:layout="@layout/fragment_time"/>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.school_meal.ui.component.calendar.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar"/>
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="com.example.school_meal.ui.component.content.ContentFragment"
+        android:label="ContentFragment"
+        tools:layout="@layout/fragment_content"/>
 
 </navigation>

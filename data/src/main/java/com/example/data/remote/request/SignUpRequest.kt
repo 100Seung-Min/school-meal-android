@@ -21,7 +21,9 @@ data class SignUpRequest(
     @SerializedName("grade")
     val grade: String,
     @SerializedName("name")
-    val name: String
+    val name: String,
+    @SerializedName("schoolClass")
+    val schoolClass: String
 )
 
 fun SignUpParam.toRequest() = SignUpRequest(
@@ -33,5 +35,6 @@ fun SignUpParam.toRequest() = SignUpRequest(
     schoolCode = schoolCode,
     `class` = `class`,
     grade = grade,
-    name = name
+    name = name,
+    schoolClass = schoolClass
 )

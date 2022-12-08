@@ -9,5 +9,6 @@ data class SignUpParam(
     val schoolCode: String,
     val `class`: String,
     val grade: String,
-    val name: String
+    val name: String,
+    val schoolClass: String,
 )

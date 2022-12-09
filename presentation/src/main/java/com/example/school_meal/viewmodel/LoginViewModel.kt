@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.param.LoginParam
+import com.example.domain.usecase.auth.GetIdUseCase
 import com.example.domain.usecase.auth.LoginUseCase
 import com.example.domain.usecase.auth.SaveIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,10 +16,12 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val saveIdUseCase: SaveIdUseCase
+    private val saveIdUseCase: SaveIdUseCase,
+    private val getIdUseCase: GetIdUseCase
 ): ViewModel() {
     private val _loginState = MutableLiveData<Boolean>()
     val loginState: LiveData<Boolean> get() = _loginState
+
     fun login(id: String, pw: String) = viewModelScope.launch {
         kotlin.runCatching {
             loginUseCase.execute(LoginParam(id, pw))
@@ -27,6 +30,13 @@ class LoginViewModel @Inject constructor(
                 saveIdUseCase.execute(id)
             }
             _loginState.value = it
+        }
+    }
+
+    fun isLogin() = viewModelScope.launch {
+        val id = getIdUseCase.execute()
+        if (!id.isNullOrBlank()) {
+            _loginState.value = true
         }
     }
 }

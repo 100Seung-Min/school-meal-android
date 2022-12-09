@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginActivity: BaseActivity<ActivityLoginBinding> (R.layout.activity_login) {
     private val loginViewModel by viewModels<LoginViewModel>()
     override fun init() {
+        loginViewModel.isLogin()
     }
 
     override fun observe() {

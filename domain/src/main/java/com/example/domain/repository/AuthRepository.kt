@@ -8,4 +8,5 @@ interface AuthRepository {
     suspend fun signUp(signUpParam: SignUpParam)
     suspend fun sendMsg(phone: String): String
     suspend fun saveId(id: String)
+    suspend fun getId(): String
 }

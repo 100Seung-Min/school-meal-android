@@ -23,4 +23,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun saveId(id: String) =
         localUserDataSource.setId(id)
+
+    override suspend fun getId(): String =
+        localUserDataSource.getId()
 }

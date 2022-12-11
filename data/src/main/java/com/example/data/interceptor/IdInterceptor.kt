@@ -1,6 +1,5 @@
 package com.example.data.interceptor
 
-import android.content.Context
 import com.example.data.local.storage.LocalUserDataSource
 import okhttp3.*
 import javax.inject.Inject

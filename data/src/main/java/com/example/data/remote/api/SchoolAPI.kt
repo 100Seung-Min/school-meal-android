@@ -4,7 +4,6 @@ import com.example.data.remote.response.MealResponse
 import com.example.data.remote.response.SchoolInfoResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface SchoolAPI {

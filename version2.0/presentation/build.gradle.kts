@@ -3,6 +3,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -86,6 +87,10 @@ dependencies {
 
     androidTestImplementation(Dependency.AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
+
+    implementation(platform(Dependency.Firebase.BOM))
+    implementation(Dependency.Firebase.KTX)
+    implementation(Dependency.Firebase.MESSAGE)
 
     implementation(Dependency.BottomNav.NAV_FRAGMENT)
     implementation(Dependency.BottomNav.NAV_UI)

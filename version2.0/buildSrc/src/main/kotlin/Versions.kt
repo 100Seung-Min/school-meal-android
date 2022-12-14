@@ -3,6 +3,7 @@ import org.gradle.api.JavaVersion
 object Versions {
     const val GRADLE_ANDROID = "7.0.4"
     const val GRADLE_KOTLIN = "1.6.10"
+    const val GRADLE_GOOGLE = "4.3.13"
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
     const val KOTLIN_VERSION = "1.6.10"
@@ -23,6 +24,10 @@ object Versions {
     const val MATERIAL = "1.3.0"
 
     const val MOSHI = "1.13.0"
+
+    const val FIREBASE_BOM = "31.0.2"
+    const val FIREBASE_MESSAGE = "23.1.0"
+    const val FIREBASE_KTX = "21.2.0"
 
     const val RETROFIT = "2.7.1"
     const val OKHTTP = "3.14.9"

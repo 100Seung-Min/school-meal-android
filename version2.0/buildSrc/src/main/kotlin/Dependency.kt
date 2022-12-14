@@ -4,6 +4,7 @@ object Dependency {
         const val GRADLE_ANDROID = "com.android.tools.build:gradle:${Versions.GRADLE_ANDROID}"
         const val GRADLE_KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.GRADLE_KOTLIN}"
         const val GRADLE_HILT = "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}"
+        const val GRADLE_GOOGLE = "com.google.gms:google-services:${Versions.GRADLE_GOOGLE}"
     }
 
     object Kotlin {
@@ -45,6 +46,12 @@ object Dependency {
             "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
         const val MOSHI = "com.squareup.moshi:moshi-kotlin:${Versions.MOSHI}"
         const val MOSHI_COMPILER = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.MOSHI}"
+    }
+
+    object Firebase {
+        const val BOM = "com.google.firebase:firebase-bom:${Versions.FIREBASE_BOM}"
+        const val MESSAGE = "com.google.firebase:firebase-messaging-ktx:${Versions.FIREBASE_MESSAGE}"
+        const val KTX = "com.google.firebase:firebase-analytics-ktx:${Versions.FIREBASE_KTX}"
     }
 
     object UnitTest {

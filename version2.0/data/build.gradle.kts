@@ -3,6 +3,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("com.android.library")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -48,6 +49,10 @@ dependencies {
 
     androidTestImplementation(Dependency.AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
+
+    implementation(platform(Dependency.Firebase.BOM))
+    implementation(Dependency.Firebase.KTX)
+    implementation(Dependency.Firebase.MESSAGE)
 
     implementation(Dependency.Libraries.RETROFIT)
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)

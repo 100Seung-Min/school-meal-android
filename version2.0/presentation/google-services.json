@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "165601692138",
+    "project_id": "school-3cbc1",
+    "storage_bucket": "school-3cbc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165601692138:android:d29593bdc0e744a175ca93",
+        "android_client_info": {
+          "package_name": "com.example.school_meal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165601692138-to1qc75rne4m3mtp2gontnov2n525lv8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.school_meal",
+            "certificate_hash": "cdf8391f4bc3778704dfa6de555491e988b79b97"
+          }
+        },
+        {
+          "client_id": "165601692138-fo2566as89430q0p557g9rjg7h7unvn6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD40F8YXcuNApOH8mqttA-ghsjOZcRSVsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165601692138-fo2566as89430q0p557g9rjg7h7unvn6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

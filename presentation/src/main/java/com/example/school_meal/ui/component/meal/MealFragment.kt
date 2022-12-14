@@ -8,6 +8,8 @@ import com.example.school_meal.databinding.FragmentMealBinding
 import com.example.school_meal.ui.component.base.BaseFragment
 import com.example.school_meal.viewmodel.MealViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
@@ -16,6 +18,7 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     override fun init() {
         binding.meal = this
         viewFragment(MealMonthFragment())
+        binding.dayTxt.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).slice(6..7)
     }
 
     fun initTabBar(view: View) {
@@ -31,6 +34,10 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
             )
             viewFragment(MealMonthFragment())
         }
+    }
+
+    fun initDayBar(view: View) {
+
     }
 
     private fun viewFragment(fragment: Fragment) {

@@ -51,7 +51,8 @@ object Dependency {
     object Firebase {
         const val BOM = "com.google.firebase:firebase-bom:${Versions.FIREBASE_BOM}"
         const val MESSAGE = "com.google.firebase:firebase-messaging-ktx:${Versions.FIREBASE_MESSAGE}"
-        const val KTX = "com.google.firebase:firebase-analytics-ktx:${Versions.FIREBASE_KTX}"
+        const val ANALYTICS = "com.google.firebase:firebase-analytics-ktx:${Versions.FIREBASE_ANALYTICS}"
+        const val AUTH = "com.google.firebase:firebase-auth-ktx"
     }
 
     object UnitTest {

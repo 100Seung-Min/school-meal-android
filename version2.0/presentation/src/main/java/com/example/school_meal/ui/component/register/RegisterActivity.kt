@@ -42,20 +42,20 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 binding.writeCertify.visibility = View.VISIBLE
             }
             R.id.registerBtn -> {
-                if (registerViewModel.currentSchool.value == null) {
-                    Toast.makeText(this, "학교가 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
-                } else if (binding.writeId.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeName.text.isNullOrBlank() || binding.writePw.text.isNullOrBlank()) {
-                    Toast.makeText(this, "필수 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
-                } else if (binding.writePw.text.toString() != binding.writeRePw.text.toString()) {
-                    Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
-                else if (!binding.writeCertify.isVisible) {
-                    Toast.makeText(this, "핸드폰 인증을 진행해주세요..", Toast.LENGTH_SHORT).show()
-                }
-                else if (binding.writeCertify.text.toString() != registerViewModel.certifyNum.value) {
-                    Toast.makeText(this, "인증번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
-                else {
+//                if (registerViewModel.currentSchool.value == null) {
+//                    Toast.makeText(this, "학교가 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
+//                } else if (binding.writeId.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeName.text.isNullOrBlank() || binding.writePw.text.isNullOrBlank()) {
+//                    Toast.makeText(this, "필수 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
+//                } else if (binding.writePw.text.toString() != binding.writeRePw.text.toString()) {
+//                    Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+//                }
+//                else if (!binding.writeCertify.isVisible) {
+//                    Toast.makeText(this, "핸드폰 인증을 진행해주세요..", Toast.LENGTH_SHORT).show()
+//                }
+//                else if (binding.writeCertify.text.toString() != registerViewModel.certifyNum.value) {
+//                    Toast.makeText(this, "인증번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+//                }
+                if (true) {
                     registerViewModel.signUp(
                         binding.writeId.text.toString(),
                         binding.writePw.text.toString(),

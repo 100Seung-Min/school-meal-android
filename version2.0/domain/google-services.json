@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:165601692138:android:d29593bdc0e744a175ca93",
         "android_client_info": {
-          "package_name": "com.example.school_meal"
+          "package_name": "com.example.domain"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "165601692138-to1qc75rne4m3mtp2gontnov2n525lv8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.school_meal",
+            "package_name": "com.example.domain",
             "certificate_hash": "cdf8391f4bc3778704dfa6de555491e988b79b97"
           }
         },

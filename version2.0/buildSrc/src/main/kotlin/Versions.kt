@@ -27,7 +27,7 @@ object Versions {
 
     const val FIREBASE_BOM = "31.0.2"
     const val FIREBASE_MESSAGE = "23.1.0"
-    const val FIREBASE_KTX = "21.2.0"
+    const val FIREBASE_ANALYTICS = "21.2.0"
 
     const val RETROFIT = "2.7.1"
     const val OKHTTP = "3.14.9"

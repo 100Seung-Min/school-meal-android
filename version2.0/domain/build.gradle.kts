@@ -47,8 +47,9 @@ dependencies {
     androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
 
     implementation(platform(Dependency.Firebase.BOM))
-    implementation(Dependency.Firebase.KTX)
+    implementation(Dependency.Firebase.ANALYTICS)
     implementation(Dependency.Firebase.MESSAGE)
+    implementation(Dependency.Firebase.AUTH)
 
     implementation(Dependency.Libraries.RETROFIT)
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)

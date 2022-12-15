@@ -60,19 +60,19 @@ class RegisterViewModel @Inject constructor(
                     id,
                     pw,
                     phone,
-                    currentSchool.value!!.cityCode,
-                    currentSchool.value!!.schoolName,
-                    currentSchool.value!!.schoolCode,
+                    currentSchool.value?.cityCode ?: "",
+                    currentSchool.value?.schoolName ?: "",
+                    currentSchool.value?.schoolCode ?: "",
                     `class`,
                     grade,
                     name,
-                    currentSchool.value!!.schoolClass
+                    currentSchool.value?.schoolClass ?: ""
                 )
             )
         }.onSuccess {
 
         }.onFailure {
-
+            println("안녕 ${it}")
         }
     }
 }

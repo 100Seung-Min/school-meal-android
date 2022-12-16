@@ -24,6 +24,7 @@ object Dependency {
 
         const val LIFECYCLE_VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_KTX}"
+        const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
 
         const val ROOM_KTX = "androidx.room:room-ktx:${Versions.ROOM}"
         const val ROOM_COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"

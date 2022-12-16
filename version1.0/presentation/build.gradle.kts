@@ -64,6 +64,7 @@ dependencies {
     implementation(Dependency.AndroidX.FRAGMENT_KTX)
     implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
     implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
+    implementation(Dependency.AndroidX.LIFECYCLE)
     implementation(Dependency.AndroidX.ROOM_KTX)
     kapt(Dependency.AndroidX.ROOM_COMPILER)
 

@@ -17,6 +17,7 @@ object Versions {
     const val APP_COMPAT = "1.3.0"
     const val FRAGMENT_KTX = "1.3.4"
     const val LIFECYCLE_KTX = "2.3.1"
+    const val LIFECYCLE = "2.4.0-alpha01"
     const val ROOM = "2.3.0"
 
     const val HILT = "2.38.1"

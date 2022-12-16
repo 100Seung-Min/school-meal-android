@@ -1,7 +1,5 @@
 package com.example.school_meal.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.SchoolInfoEntity
@@ -9,6 +7,8 @@ import com.example.domain.param.SignUpParam
 import com.example.domain.usecase.auth.SendMsgUseCase
 import com.example.domain.usecase.auth.SignUpUseCase
 import com.example.domain.usecase.school.SchoolInfoUseCase
+import com.example.school_meal.ui.extension.MutableEventFlow
+import com.example.school_meal.ui.extension.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,30 +19,32 @@ class RegisterViewModel @Inject constructor(
     private val sendMsgUseCase: SendMsgUseCase,
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
-    private val _schoolInfo = MutableLiveData<SchoolInfoEntity>()
-    val schoolInfo: LiveData<SchoolInfoEntity> get() = _schoolInfo
-    private val _certifyNum = MutableLiveData<String>()
-    val certifyNum: LiveData<String> get() = _certifyNum
 
-    private val _currentSchool = MutableLiveData<SchoolInfoEntity.SchoolInfo>()
-    val currentSchool: LiveData<SchoolInfoEntity.SchoolInfo> get() = _currentSchool
+    private val _eventFlow = MutableEventFlow<Event>()
+    val eventFlow = _eventFlow.asEventFlow()
+
+    companion object {
+        var code: String? = null
+        var currentSchool: SchoolInfoEntity.SchoolInfo? = null
+    }
+
     fun schoolInfo(schoolName: String) = viewModelScope.launch {
         kotlin.runCatching {
             schoolInfoUseCase.execute(schoolName)
         }.onSuccess {
-            _schoolInfo.value = it
+            event(Event.School(it))
         }
     }
 
     fun setCurrentSchool(currentSchool: SchoolInfoEntity.SchoolInfo) {
-        _currentSchool.value = currentSchool
+        event(Event.CurrentSchool(currentSchool))
     }
 
     fun sendMsg(phone: String) = viewModelScope.launch {
         kotlin.runCatching {
             sendMsgUseCase.execute(phone)
         }.onSuccess {
-            _certifyNum.value = it
+            event(Event.SendSuccess(it))
         }
     }
 
@@ -60,19 +62,30 @@ class RegisterViewModel @Inject constructor(
                     id,
                     pw,
                     phone,
-                    currentSchool.value!!.cityCode,
-                    currentSchool.value!!.schoolName,
-                    currentSchool.value!!.schoolCode,
+                    currentSchool!!.cityCode,
+                    currentSchool!!.schoolName,
+                    currentSchool!!.schoolCode,
                     `class`,
                     grade,
                     name,
-                    currentSchool.value!!.schoolClass
+                    currentSchool!!.schoolClass
                 )
             )
         }.onSuccess {
-
+            event(Event.RegisterSuccess(true))
         }.onFailure {
 
         }
+    }
+
+    private fun event(event: Event) = viewModelScope.launch {
+        _eventFlow.emit(event)
+    }
+
+    sealed class Event {
+        data class School(val schoolInfo: SchoolInfoEntity?) : Event()
+        data class CurrentSchool(val school: SchoolInfoEntity.SchoolInfo): Event()
+        data class SendSuccess(val num: String) : Event()
+        data class RegisterSuccess(val status: Boolean) : Event()
     }
 }

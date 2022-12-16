@@ -5,12 +5,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import com.example.domain.entity.SchoolInfoEntity
 import com.example.school_meal.R
 import com.example.school_meal.databinding.ActivityRegisterBinding
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.ui.component.login.LoginActivity
+import com.example.school_meal.ui.extension.repeatOnStart
 import com.example.school_meal.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
@@ -20,16 +23,27 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     override fun observe() {
-        observeSchool()
-        observeCurrentSchool()
+        repeatOnStart {
+            registerViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
-    private fun observeSchool() = registerViewModel.schoolInfo.observe(this) {
-        SchoolListFragment().show(supportFragmentManager, "schoolList")
-    }
-
-    private fun observeCurrentSchool() = registerViewModel.currentSchool.observe(this) {
-        binding.writeSchool.setText(it.schoolName)
+    private fun handleEvent(event: RegisterViewModel.Event) = when (event) {
+        is RegisterViewModel.Event.School -> {
+            SchoolListFragment(event.schoolInfo).show(supportFragmentManager, "schoolList")
+        }
+        is RegisterViewModel.Event.SendSuccess -> {
+            RegisterViewModel.code = event.num
+            binding.writeCertify.visibility = View.VISIBLE
+        }
+        is RegisterViewModel.Event.RegisterSuccess -> {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+        is RegisterViewModel.Event.CurrentSchool -> {
+            binding.writeSchool.setText(event.school.schoolName)
+            RegisterViewModel.currentSchool = event.school
+        }
     }
 
     fun click(view: View) {
@@ -39,23 +53,19 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             }
             R.id.certifyBtn -> {
                 registerViewModel.sendMsg(binding.writePhone.text.toString())
-                binding.writeCertify.visibility = View.VISIBLE
             }
             R.id.registerBtn -> {
-                if (registerViewModel.currentSchool.value == null) {
+                if (RegisterViewModel.currentSchool == null) {
                     Toast.makeText(this, "학교가 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
                 } else if (binding.writeId.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeClass.text.isNullOrBlank() || binding.writeName.text.isNullOrBlank() || binding.writePw.text.isNullOrBlank()) {
                     Toast.makeText(this, "필수 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
                 } else if (binding.writePw.text.toString() != binding.writeRePw.text.toString()) {
                     Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
-                else if (!binding.writeCertify.isVisible) {
+                } else if (!binding.writeCertify.isVisible) {
                     Toast.makeText(this, "핸드폰 인증을 진행해주세요..", Toast.LENGTH_SHORT).show()
-                }
-                else if (binding.writeCertify.text.toString() != registerViewModel.certifyNum.value) {
+                } else if (binding.writeCertify.text.toString() != RegisterViewModel.code) {
                     Toast.makeText(this, "인증번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
-                else {
+                } else {
                     registerViewModel.signUp(
                         binding.writeId.text.toString(),
                         binding.writePw.text.toString(),
@@ -64,8 +74,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                         binding.writeGrade.text.toString(),
                         binding.writeName.text.toString()
                     )
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
                 }
             }
         }

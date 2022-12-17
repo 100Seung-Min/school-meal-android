@@ -1,14 +1,13 @@
 package com.example.school_meal.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.param.LoginParam
 import com.example.domain.usecase.auth.GetIdUseCase
 import com.example.domain.usecase.auth.LoginUseCase
 import com.example.domain.usecase.auth.SaveIdUseCase
+import com.example.school_meal.ui.extension.MutableEventFlow
+import com.example.school_meal.ui.extension.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,8 +18,9 @@ class LoginViewModel @Inject constructor(
     private val saveIdUseCase: SaveIdUseCase,
     private val getIdUseCase: GetIdUseCase
 ): ViewModel() {
-    private val _loginState = MutableLiveData<Boolean>()
-    val loginState: LiveData<Boolean> get() = _loginState
+
+    private val _eventFlow = MutableEventFlow<Event>()
+    val eventFlow = _eventFlow.asEventFlow()
 
     fun login(id: String, pw: String) = viewModelScope.launch {
         kotlin.runCatching {
@@ -28,15 +28,23 @@ class LoginViewModel @Inject constructor(
         }.onSuccess {
             if (it) {
                 saveIdUseCase.execute(id)
+                event(Event.LoginSuccess)
             }
-            _loginState.value = it
         }
     }
 
     fun isLogin() = viewModelScope.launch {
         val id = getIdUseCase.execute()
         if (!id.isNullOrBlank()) {
-            _loginState.value = true
+            event(Event.LoginSuccess)
         }
+    }
+
+    private fun event(event: Event) = viewModelScope.launch {
+        _eventFlow.emit(event)
+    }
+
+    sealed class Event {
+        object LoginSuccess: Event()
     }
 }

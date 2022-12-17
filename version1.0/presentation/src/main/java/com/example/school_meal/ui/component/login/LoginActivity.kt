@@ -8,32 +8,36 @@ import com.example.school_meal.databinding.ActivityLoginBinding
 import com.example.school_meal.ui.component.base.BaseActivity
 import com.example.school_meal.ui.component.main.MainActivity
 import com.example.school_meal.ui.component.register.RegisterActivity
+import com.example.school_meal.ui.extension.repeatOnStart
 import com.example.school_meal.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity: BaseActivity<ActivityLoginBinding> (R.layout.activity_login) {
+class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private val loginViewModel by viewModels<LoginViewModel>()
     override fun init() {
         loginViewModel.isLogin()
     }
 
     override fun observe() {
-        observeLogin()
+        repeatOnStart {
+            loginViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
-    private fun observeLogin() {
-        loginViewModel.loginState.observe(this) {
-            if (it) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
+    private fun handleEvent(event: LoginViewModel.Event) = when (event) {
+        is LoginViewModel.Event.LoginSuccess -> {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
     fun click(view: View) {
-        when(view.id) {
-            R.id.loginBtn -> loginViewModel.login(binding.writeId.text.toString(), binding.writePw.text.toString())
+        when (view.id) {
+            R.id.loginBtn -> loginViewModel.login(
+                binding.writeId.text.toString(),
+                binding.writePw.text.toString()
+            )
             R.id.registerBtn -> {
                 startActivity(Intent(this, RegisterActivity::class.java))
             }

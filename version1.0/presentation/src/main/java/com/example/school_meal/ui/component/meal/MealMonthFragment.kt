@@ -3,12 +3,12 @@ package com.example.school_meal.ui.component.meal
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.data.remote.response.MealResponse
 import com.example.domain.entity.MealEntity
 import com.example.school_meal.R
 import com.example.school_meal.databinding.FragmentMealMonthBinding
 import com.example.school_meal.ui.adapter.MealAdapter
 import com.example.school_meal.ui.component.base.BaseFragment
+import com.example.school_meal.ui.extension.repeatOnStart
 import com.example.school_meal.viewmodel.MealViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,12 +19,48 @@ class MealMonthFragment : BaseFragment<FragmentMealMonthBinding>(R.layout.fragme
     override fun init() {
         binding.meal = this
         initList()
-        mealViModel.meal()
-        observeMeal()
         initMonthTxt()
-        mealViModel.currentMonth.observe(this) {
-            println("안녕 $it")
-            binding.monthTxt.text = "${it.slice(0..3)}년 ${it.slice(4..5)}월"
+        mealViModel.meal()
+        repeatOnStart {
+            mealViModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
+    private fun handleEvent(event: MealViewModel.Event) = when(event) {
+        is MealViewModel.Event.Meal -> {
+            if (event.mealList != null && event.mealList.isNotEmpty()) {
+                var list = when (getDate(event.mealList[0].mealDay)) {
+                    "월" -> listOf()
+                    "화" -> addList(1)
+                    "수" -> addList(2)
+                    "목" -> addList(3)
+                    "금" -> addList(4)
+                    else -> listOf()
+                }
+                event.mealList.forEach {
+                    if (it.mealTime == MealViewModel.currentMeal) {
+                        list = list.plus(it)
+                        if (MealViewModel.currentMeal == "석식" && getDate(it.mealDay) == "목") {
+                            list = list.plus(
+                                MealEntity.MealItem(
+                                    "집 가는 날",
+                                    (it.mealDay.toInt() + 1).toString(),
+                                    "석식"
+                                )
+                            )
+                        }
+                    }
+                }
+                adapter.submitList(list)
+            } else {
+                adapter.submitList(event.mealList)
+            }
+        }
+        is MealViewModel.Event.MealDate -> {
+            binding.monthTxt.text = "${event.date.slice(0..3)}년 ${event.date.slice(4..5)}월"
+            mealViModel.meal()
+        }
+        is MealViewModel.Event.MealTime -> {
             mealViModel.meal()
         }
     }
@@ -40,7 +76,7 @@ class MealMonthFragment : BaseFragment<FragmentMealMonthBinding>(R.layout.fragme
             MealEntity.MealItem(
                 "",
                 "",
-                mealViModel.currentMeal.value ?: "조식"
+                MealViewModel.currentMeal
             )
         )
         return list
@@ -56,37 +92,7 @@ class MealMonthFragment : BaseFragment<FragmentMealMonthBinding>(R.layout.fragme
 
     private fun initMonthTxt() {
         binding.monthTxt.text =
-            "${mealViModel.currentMonth.value!!.slice(0..3)}년 ${mealViModel.currentMonth.value!!.slice(4..5)}월"
-    }
-
-    private fun observeMeal() = mealViModel.mealInfo.observe(this) { item ->
-        if (item.isNotEmpty()) {
-            var list = when (getDate(item[0].mealDay)) {
-                "월" -> listOf()
-                "화" -> addList(1)
-                "수" -> addList(2)
-                "목" -> addList(3)
-                "금" -> addList(4)
-                else -> listOf()
-            }
-            item.forEach {
-                if (it.mealTime == mealViModel.currentMeal.value) {
-                    list = list.plus(it)
-                    if (mealViModel.currentMeal.value == "석식" && getDate(it.mealDay) == "목") {
-                        list = list.plus(
-                            MealEntity.MealItem(
-                                "집 가는 날",
-                                (it.mealDay.toInt() + 1).toString(),
-                                "석식"
-                            )
-                        )
-                    }
-                }
-            }
-            adapter.submitList(list)
-        } else {
-            adapter.submitList(item)
-        }
+            "${MealViewModel.currentMonth.slice(0..3)}년 ${MealViewModel.currentMonth.slice(4..5)}월"
     }
 
     fun changeMonth(view: View) {

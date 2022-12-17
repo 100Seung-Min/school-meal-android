@@ -1,39 +1,35 @@
 package com.example.school_meal.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.MealEntity
 import com.example.domain.usecase.school.SchoolMealUseCase
-import com.example.school_meal.ui.extension.SingleLiveEvent
+import com.example.school_meal.ui.extension.MutableEventFlow
+import com.example.school_meal.ui.extension.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class MealViewModel @Inject constructor(
     private val schoolMealUseCase: SchoolMealUseCase
 ) : ViewModel() {
-    private val _mealInfo = SingleLiveEvent<List<MealEntity.MealItem>>()
-    val mealInfo: MutableLiveData<List<MealEntity.MealItem>> get() = _mealInfo
-    private val _currentMeal = SingleLiveEvent<String>()
-    val currentMeal: MutableLiveData<String> get() = _currentMeal
-    private val _currentMonth = SingleLiveEvent<String>()
-    val currentMonth: MutableLiveData<String> get() = _currentMonth
 
-    init {
-        _currentMeal.value = "조식"
-        _currentMonth.value = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+    private val _eventFlow = MutableEventFlow<Event>()
+    val eventFlow = _eventFlow.asEventFlow()
+
+    companion object {
+        var currentMeal = "조식"
+        var currentMonth = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))
     }
 
     fun meal() = viewModelScope.launch {
         kotlin.runCatching {
-            schoolMealUseCase.execute(_currentMonth.value!!.slice(0..5))
+            schoolMealUseCase.execute(currentMonth.slice(0..5))
         }.onSuccess {
-            _mealInfo.value = it?.row
+            event(Event.Meal(it?.row))
         }.onFailure {
 
         }
@@ -41,18 +37,29 @@ class MealViewModel @Inject constructor(
 
     fun setMonth(isPlus: Boolean = true) {
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        var date = LocalDate.parse(_currentMonth.value, formatter)
-        date = if (isPlus) {
+        var date = LocalDate.parse(currentMonth, formatter)
+        currentMonth = (if (isPlus) {
             date.plusMonths(1)
         } else {
             date.minusMonths(1)
-        }
-        _currentMonth.value = date.format(formatter)
+        }).format(formatter)
+        event(Event.MealDate(currentMonth))
     }
 
     fun setMealType(type: String) {
-        if (_currentMeal.value != type) {
-            _currentMeal.value = type
+        if (currentMeal != type) {
+            currentMeal = type
+            event(Event.MealTime(type))
         }
+    }
+
+    private fun event(event: Event) = viewModelScope.launch {
+        _eventFlow.emit(event)
+    }
+
+    sealed class Event {
+        data class Meal(val mealList: List<MealEntity.MealItem>?) : Event()
+        data class MealTime(val time: String): Event()
+        data class MealDate(val date: String): Event()
     }
 }

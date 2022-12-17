@@ -17,7 +17,8 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
 
     override fun init() {
         binding.meal = this
-        viewFragment(MealMonthFragment())
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.mealContainer, MealMonthFragment()).commit()
         binding.dayTxt.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).slice(6..7)
     }
 
@@ -28,20 +29,12 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
             R.id.dinner -> "석식"
             else -> "조식"
         }
-        if (mealType != mealViewModel.currentMeal.value) {
-            mealViewModel.setMealType(
-                mealType
-            )
-            viewFragment(MealMonthFragment())
-        }
+        mealViewModel.setMealType(
+            mealType
+        )
     }
 
     fun initDayBar(view: View) {
 
-    }
-
-    private fun viewFragment(fragment: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.mealContainer, fragment).commit()
     }
 }

@@ -25,7 +25,7 @@ class RegisterViewModel @Inject constructor(
 
     companion object {
         var code: String? = null
-        var currentSchool: SchoolInfoEntity.SchoolInfo? = null
+        var currentSchool: SchoolInfoEntity? = null
     }
 
     fun schoolInfo(schoolName: String) = viewModelScope.launch {
@@ -36,7 +36,7 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun setCurrentSchool(currentSchool: SchoolInfoEntity.SchoolInfo) {
+    fun setCurrentSchool(currentSchool: SchoolInfoEntity) {
         event(Event.CurrentSchool(currentSchool))
     }
 
@@ -83,8 +83,8 @@ class RegisterViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class School(val schoolInfo: SchoolInfoEntity?) : Event()
-        data class CurrentSchool(val school: SchoolInfoEntity.SchoolInfo): Event()
+        data class School(val schoolInfo: List<SchoolInfoEntity>?) : Event()
+        data class CurrentSchool(val school: SchoolInfoEntity): Event()
         data class SendSuccess(val num: String) : Event()
         data class RegisterSuccess(val status: Boolean) : Event()
     }

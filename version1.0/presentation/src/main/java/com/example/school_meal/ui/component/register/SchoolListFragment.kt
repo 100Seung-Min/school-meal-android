@@ -13,7 +13,7 @@ import com.example.school_meal.ui.adapter.SchoolAdapter
 import com.example.school_meal.viewmodel.RegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class SchoolListFragment(val schoolList: SchoolInfoEntity?): BottomSheetDialogFragment() {
+class SchoolListFragment(val schoolList: List<SchoolInfoEntity>?): BottomSheetDialogFragment() {
     private val registerViewModel by activityViewModels<RegisterViewModel>()
     private lateinit var binding: FragmentSchoolListBinding
     override fun onCreateView(
@@ -27,7 +27,7 @@ class SchoolListFragment(val schoolList: SchoolInfoEntity?): BottomSheetDialogFr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.schoolList.adapter = SchoolAdapter(schoolList?.row) {
+        binding.schoolList.adapter = SchoolAdapter(schoolList) {
             registerViewModel.setCurrentSchool(it)
             this@SchoolListFragment.dismiss()
         }

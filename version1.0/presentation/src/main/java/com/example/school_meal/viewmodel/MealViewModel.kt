@@ -32,7 +32,7 @@ class MealViewModel @Inject constructor(
         kotlin.runCatching {
             schoolMealUseCase.execute(currentMonth)
         }.onSuccess {
-            event(Event.Meal(it?.row))
+            event(Event.Meal(it))
             event(Event.MealDate(currentMonth))
         }
     }
@@ -41,8 +41,8 @@ class MealViewModel @Inject constructor(
         kotlin.runCatching {
             schoolMealUseCase.execute(currentMonth.slice(0..5))
         }.onSuccess {
-            if (it != null && !it.row.isNullOrEmpty()) {
-                var list = when (getDate(it.row[0].mealDay)) {
+            if (!it.isNullOrEmpty()) {
+                var list = when (getDate(it[0].mealDay)) {
                     "월" -> listOf()
                     "화" -> addList(1)
                     "수" -> addList(2)
@@ -50,12 +50,12 @@ class MealViewModel @Inject constructor(
                     "금" -> addList(4)
                     else -> listOf()
                 }
-                it.row.forEach {
+                it.forEach {
                     if (it.mealTime == MealViewModel.currentMeal) {
                         list = list.plus(it)
                         if (MealViewModel.currentMeal == "석식" && getDate(it.mealDay) == "목") {
                             list = list.plus(
-                                MealEntity.MealItem(
+                                MealEntity(
                                     "집 가는 날",
                                     (it.mealDay.toInt() + 1).toString(),
                                     "석식"
@@ -114,10 +114,10 @@ class MealViewModel @Inject constructor(
         return SimpleDateFormat("EE", Locale.KOREA).format(date)
     }
 
-    private fun addList(count: Int): List<MealEntity.MealItem> {
-        var list = listOf<MealEntity.MealItem>()
+    private fun addList(count: Int): List<MealEntity> {
+        var list = listOf<MealEntity>()
         for (i in 0 until count) list = list.plus(
-            MealEntity.MealItem(
+            MealEntity(
                 "",
                 "",
                 MealViewModel.currentMeal
@@ -131,7 +131,7 @@ class MealViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class Meal(val mealList: List<MealEntity.MealItem>?) : Event()
+        data class Meal(val mealList: List<MealEntity>?) : Event()
         data class MealTime(val time: String): Event()
         data class MealDate(val date: String): Event()
     }

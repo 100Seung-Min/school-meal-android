@@ -8,11 +8,11 @@ import javax.inject.Inject
 class SchoolDataSourceImpl @Inject constructor(
     private val schoolAPI: SchoolAPI
 ): SchoolDataSource {
-    override suspend fun schoolInfo(schoolName: String): SchoolInfoResponse? {
+    override suspend fun schoolInfo(schoolName: String): List<SchoolInfoResponse>? {
         return schoolAPI.schoolInfo(schoolName)?.body()
     }
 
-    override suspend fun schoolMeal(day: String): MealResponse? {
+    override suspend fun schoolMeal(day: String): List<MealResponse>? {
         return schoolAPI.schoolMeal(day)?.body()
     }
 }

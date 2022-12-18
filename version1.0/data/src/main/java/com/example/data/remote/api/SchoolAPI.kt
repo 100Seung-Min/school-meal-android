@@ -10,10 +10,10 @@ interface SchoolAPI {
     @GET("school")
     suspend fun schoolInfo(
         @Query("schoolName") schoolName: String
-    ): Response<SchoolInfoResponse>?
+    ): Response<List<SchoolInfoResponse>>?
 
     @GET("school/meal")
     suspend fun schoolMeal(
         @Query("day") day: String
-    ): Response<MealResponse>?
+    ): Response<List<MealResponse>>?
 }

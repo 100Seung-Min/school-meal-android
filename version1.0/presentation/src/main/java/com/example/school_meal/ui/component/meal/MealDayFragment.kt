@@ -8,7 +8,6 @@ import com.example.school_meal.databinding.FragmentMealDayBinding
 import com.example.school_meal.ui.component.base.BaseFragment
 import com.example.school_meal.ui.extension.repeatOnStart
 import com.example.school_meal.viewmodel.MealViewModel
-import kotlinx.coroutines.flow.collect
 
 class MealDayFragment : BaseFragment<FragmentMealDayBinding>(R.layout.fragment_meal_day) {
     private val mealViewModel by activityViewModels<MealViewModel>()
@@ -45,7 +44,7 @@ class MealDayFragment : BaseFragment<FragmentMealDayBinding>(R.layout.fragment_m
         }
     }
 
-    private fun viewMeal(item: MealEntity.MealItem?) = binding.apply {
+    private fun viewMeal(item: MealEntity?) = binding.apply {
         var content = ""
         item?.dishName?.forEach { data ->
             if (!data.equals('<') && !data.equals('>') && !data.equals('/') && !data.equals('b') && !data.equals(

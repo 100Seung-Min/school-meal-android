@@ -10,11 +10,11 @@ import javax.inject.Inject
 class SchoolRepositoryImpl @Inject constructor(
     private val schoolDataSource: SchoolDataSource
 ): SchoolRepository {
-    override suspend fun schoolInfo(schoolName: String): SchoolInfoEntity? {
-        return schoolDataSource.schoolInfo(schoolName)?.toEntity()
+    override suspend fun schoolInfo(schoolName: String): List<SchoolInfoEntity>? {
+        return schoolDataSource.schoolInfo(schoolName)?.map { it.toEntity() }
     }
 
-    override suspend fun schoolMeal(day: String): MealEntity? {
-        return schoolDataSource.schoolMeal(day)?.toEntity()
+    override suspend fun schoolMeal(day: String): List<MealEntity>? {
+        return schoolDataSource.schoolMeal(day)?.map { it.toEntity() }
     }
 }

@@ -12,10 +12,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MealAdapter :
-    ListAdapter<MealEntity.MealItem, RecyclerView.ViewHolder>(diffUtil) {
+    ListAdapter<MealEntity, RecyclerView.ViewHolder>(diffUtil) {
 
     class MealViewHolder(val binding: ItemMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MealEntity.MealItem) {
+        fun bind(item: MealEntity) {
             var content = ""
             for (data in item.dishName) {
                 if (!data.equals('<') && !data.equals('>') && !data.equals('/') && !data.equals('b') && !data.equals(
@@ -61,17 +61,17 @@ class MealAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<MealEntity.MealItem>() {
+        val diffUtil = object : DiffUtil.ItemCallback<MealEntity>() {
             override fun areItemsTheSame(
-                oldItem: MealEntity.MealItem,
-                newItem: MealEntity.MealItem
+                oldItem: MealEntity,
+                newItem: MealEntity
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: MealEntity.MealItem,
-                newItem: MealEntity.MealItem
+                oldItem: MealEntity,
+                newItem: MealEntity
             ): Boolean {
                 return oldItem == newItem
             }

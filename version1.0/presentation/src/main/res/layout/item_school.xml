@@ -4,7 +4,7 @@
     <data>
         <variable
             name="schoolItem"
-            type="com.example.domain.entity.SchoolInfoEntity.SchoolInfo" />
+            type="com.example.domain.entity.SchoolInfoEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

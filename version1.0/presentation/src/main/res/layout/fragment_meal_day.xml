@@ -6,43 +6,60 @@
     <data>
         <variable
             name="meal"
-            type="com.example.school_meal.ui.component.meal.MealFragment" />
+            type="com.example.school_meal.ui.component.meal.MealDayFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.component.meal.MealFragment">
+        tools:context=".ui.component.meal.MealDayFragment">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/meal_tablayout"
-            app:layout_constraintTop_toTopOf="parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dateLine"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아침" />
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/dateLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="점심" />
+        <ImageView
+            android:id="@+id/nextBtn"
+            android:onClick="@{meal::changeMonth}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="@id/dateLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저녁" />
-        </com.google.android.material.tabs.TabLayout>
+        <ImageView
+            android:id="@+id/prevBtn"
+            android:onClick="@{meal::changeMonth}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/ic_prev"
+            app:layout_constraintBottom_toBottomOf="@id/dateLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="50dp"
-            android:id="@+id/result_meal_recyclerview"
+        <TextView
+            android:id="@+id/mealTxt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="0dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@id/dateLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

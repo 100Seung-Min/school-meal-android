@@ -25,7 +25,19 @@ class MealViewModel @Inject constructor(
         var currentMonth = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))
     }
 
+    init {
+        event(Event.MealDate(currentMonth))
+    }
+
     fun meal() = viewModelScope.launch {
+        kotlin.runCatching {
+            schoolMealUseCase.execute(currentMonth)
+        }.onSuccess {
+            event(Event.Meal(it?.row))
+        }
+    }
+
+    fun mealMonth() = viewModelScope.launch {
         kotlin.runCatching {
             schoolMealUseCase.execute(currentMonth.slice(0..5))
         }.onSuccess {
@@ -42,6 +54,17 @@ class MealViewModel @Inject constructor(
             date.plusMonths(1)
         } else {
             date.minusMonths(1)
+        }).format(formatter)
+        event(Event.MealDate(currentMonth))
+    }
+
+    fun setDate(isPlus: Boolean = true) {
+        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+        var date = LocalDate.parse(currentMonth, formatter)
+        currentMonth = (if (isPlus) {
+            date.plusDays(1)
+        } else {
+            date.minusDays(1)
         }).format(formatter)
         event(Event.MealDate(currentMonth))
     }

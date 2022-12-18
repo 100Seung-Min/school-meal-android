@@ -1,7 +1,6 @@
 package com.example.school_meal.ui.component.meal
 
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.school_meal.R
 import com.example.school_meal.databinding.FragmentMealBinding
@@ -18,7 +17,7 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     override fun init() {
         binding.meal = this
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.mealContainer, MealMonthFragment()).commit()
+            .replace(R.id.mealContainer, MealDayFragment()).commit()
         binding.dayTxt.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).slice(6..7)
     }
 
@@ -35,6 +34,21 @@ class MealFragment : BaseFragment<FragmentMealBinding>(R.layout.fragment_meal) {
     }
 
     fun initDayBar(view: View) {
-
+        when(view.id) {
+            R.id.dayBtn -> {
+                if (MealViewModel.viewType) {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.mealContainer, MealDayFragment()).commit()
+                    mealViewModel.changeViewType()
+                }
+            }
+            R.id.monthBtn -> {
+                if (!MealViewModel.viewType) {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.mealContainer, MealMonthFragment()).commit()
+                    mealViewModel.changeViewType()
+                }
+            }
+        }
     }
 }

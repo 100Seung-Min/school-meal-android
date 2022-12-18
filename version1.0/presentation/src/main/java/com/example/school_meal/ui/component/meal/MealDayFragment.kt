@@ -14,6 +14,7 @@ class MealDayFragment : BaseFragment<FragmentMealDayBinding>(R.layout.fragment_m
     private val mealViewModel by activityViewModels<MealViewModel>()
     override fun init() {
         binding.meal = this
+        mealViewModel.meal()
         repeatOnStart {
             mealViewModel.eventFlow.collect { event -> handleEvent(event) }
         }

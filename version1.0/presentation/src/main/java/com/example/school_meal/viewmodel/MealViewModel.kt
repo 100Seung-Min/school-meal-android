@@ -28,15 +28,12 @@ class MealViewModel @Inject constructor(
         var viewType = false
     }
 
-    init {
-        event(Event.MealDate(currentMonth))
-    }
-
     fun meal() = viewModelScope.launch {
         kotlin.runCatching {
             schoolMealUseCase.execute(currentMonth)
         }.onSuccess {
             event(Event.Meal(it?.row))
+            event(Event.MealDate(currentMonth))
         }
     }
 
@@ -71,6 +68,7 @@ class MealViewModel @Inject constructor(
             } else {
                 event(Event.Meal(null))
             }
+            event(Event.MealDate(currentMonth))
         }.onFailure {
 
         }
@@ -84,6 +82,7 @@ class MealViewModel @Inject constructor(
         } else {
             date.minusMonths(1)
         }).format(formatter)
+        mealMonth()
         event(Event.MealDate(currentMonth))
     }
 
@@ -95,6 +94,7 @@ class MealViewModel @Inject constructor(
         } else {
             date.minusDays(1)
         }).format(formatter)
+        meal()
         event(Event.MealDate(currentMonth))
     }
 

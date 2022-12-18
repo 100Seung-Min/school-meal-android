@@ -28,7 +28,6 @@ class MealMonthFragment : BaseFragment<FragmentMealMonthBinding>(R.layout.fragme
         }
         is MealViewModel.Event.MealDate -> {
             binding.monthTxt.text = "${event.date.slice(0..3)}년 ${event.date.slice(4..5)}월"
-            mealViewModel.mealMonth()
         }
         is MealViewModel.Event.MealTime -> {
             mealViewModel.mealMonth()

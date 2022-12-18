@@ -23,7 +23,15 @@ class MealDayFragment : BaseFragment<FragmentMealDayBinding>(R.layout.fragment_m
     private fun handleEvent(event: MealViewModel.Event) = when (event) {
         is MealViewModel.Event.Meal -> {
             if (!event.mealList.isNullOrEmpty()) {
-                viewMeal(event.mealList?.get(0))
+                if (MealViewModel.currentMeal == "조식" && event.mealList.size != 1) {
+                    viewMeal(event.mealList[0])
+                } else if (MealViewModel.currentMeal == "중식") {
+                    viewMeal(if (event.mealList.size == 1) event.mealList[0] else event.mealList[1])
+                } else if (MealViewModel.currentMeal == "석식" && event.mealList.size == 3) {
+                    viewMeal(event.mealList[2])
+                } else {
+                    binding.mealTxt.text = "급식이 없습니다."
+                }
             } else {
                 binding.mealTxt.text = "급식이 없습니다."
             }
@@ -31,7 +39,6 @@ class MealDayFragment : BaseFragment<FragmentMealDayBinding>(R.layout.fragment_m
         is MealViewModel.Event.MealDate -> {
             binding.dateTxt.text =
                 "${event.date.slice(0..3)}년 ${event.date.slice(4..5)}월 ${event.date.slice(6..7)}일"
-            mealViewModel.meal()
         }
         is MealViewModel.Event.MealTime -> {
             mealViewModel.meal()

@@ -13,7 +13,7 @@ class LocalUserDataSourceImpl @Inject constructor(
     }
 
 
-    override fun setId(id: String) {
+    override fun setId(id: String?) {
         getSharedPreferences().edit().putString(ID, id).apply()
     }
 

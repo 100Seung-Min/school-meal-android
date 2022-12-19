@@ -1,22 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-   <data>
-      <variable
-          name="time"
-          type="com.example.school_meal.ui.component.time.TimeFragment" />
-   </data>
+    <data>
 
-   <FrameLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       tools:context=".ui.component.time.TimeFragment">
+        <variable
+            name="time"
+            type="com.example.school_meal.ui.component.time.TimeFragment" />
+    </data>
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/timeTable_recyclerview"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.component.time.TimeFragment">
 
-   </FrameLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dayOfWeekLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/dayOfWeekLine"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_meal_item" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_meal_item"
+                android:gravity="center"
+                android:text="월" />
+
+            <TextView
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_meal_item"
+                android:gravity="center"
+                android:text="화" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_meal_item"
+                android:gravity="center"
+                android:text="수" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_meal_item"
+                android:gravity="center"
+                android:text="목" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_meal_item"
+                android:gravity="center"
+                android:text="금" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dayOfWeekLine">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="5" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_meal_item"
+                    android:gravity="center"
+                    android:text="7" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/timeTable_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

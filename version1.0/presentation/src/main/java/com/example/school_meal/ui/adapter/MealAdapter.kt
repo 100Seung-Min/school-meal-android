@@ -37,11 +37,13 @@ class MealAdapter :
             if (item.mealDay != "") {
                 binding.schoolMealDateTxt.text =
                     "${item.mealDay.slice(4..5)}월 ${item.mealDay.slice(6 until item.mealDay.length)}일"
+            } else {
+                binding.schoolMealDateTxt.text = ""
             }
             binding.schoolMealTxt.text = content
             val today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))
             if (today.equals(item.mealDay)) {
-                binding.findMealLayout.setBackgroundColor(Color.GREEN)
+                binding.schoolMealDateTxt.setBackgroundColor(Color.GREEN)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.school_meal.ui.component.time
 
+import android.graphics.Color
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.school_meal.R
@@ -9,6 +10,9 @@ import com.example.school_meal.ui.component.base.BaseFragment
 import com.example.school_meal.ui.extension.repeatOnStart
 import com.example.school_meal.viewmodel.TimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.*
 
 @AndroidEntryPoint
 class TimeFragment : BaseFragment<FragmentTimeBinding>(R.layout.fragment_time) {
@@ -17,7 +21,7 @@ class TimeFragment : BaseFragment<FragmentTimeBinding>(R.layout.fragment_time) {
 
     override fun init() {
         timeViewModel.time()
-        initList()
+        initView()
         repeatOnStart {
             timeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
@@ -29,11 +33,18 @@ class TimeFragment : BaseFragment<FragmentTimeBinding>(R.layout.fragment_time) {
         }
     }
 
-    private fun initList() {
+    private fun initView() = binding.apply {
         adapter = TimeAdapter()
-        binding.timeTableRecyclerview.apply {
+        timeTableRecyclerview.apply {
             adapter = this@TimeFragment.adapter
             layoutManager = GridLayoutManager(context, 5)
+        }
+        when(LocalDate.now().dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.KOREAN)) {
+            "월" -> mondayTxt.setBackgroundColor(Color.GREEN)
+            "화" -> tuesDayTxt.setBackgroundColor(Color.GREEN)
+            "수" -> wednesdayTxt.setBackgroundColor(Color.GREEN)
+            "목" -> thursdayTxt.setBackgroundColor(Color.GREEN)
+            "금" -> fridayTxt.setBackgroundColor(Color.GREEN)
         }
     }
 }

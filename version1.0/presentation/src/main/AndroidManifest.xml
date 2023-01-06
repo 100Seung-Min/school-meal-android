@@ -13,7 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.School_Meal"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.component.login.LoginActivity"
+        <receiver
+            android:name=".widget.MealAppWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/meal_widget_info" />
+        </receiver>
+
+        <activity
+            android:name=".ui.component.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +37,9 @@
         <activity
             android:name=".ui.component.main.MainActivity"
             android:exported="false" />
-        <activity android:name=".ui.component.register.RegisterActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.component.register.RegisterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

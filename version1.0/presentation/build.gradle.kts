@@ -39,6 +39,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
     packagingOptions.resources.excludes += setOf(
         "META-INF/DEPENDENCIES",

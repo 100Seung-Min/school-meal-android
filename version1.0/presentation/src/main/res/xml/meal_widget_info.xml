@@ -4,10 +4,10 @@
     android:initialKeyguardLayout="@layout/widget_meal"
     android:initialLayout="@layout/widget_meal"
     android:minWidth="368dp"
-    android:minHeight="214dp"
+    android:minHeight="368dp"
     android:previewImage="@drawable/example_appwidget_preview"
     android:previewLayout="@layout/widget_meal"
     android:targetCellWidth="5"
-    android:targetCellHeight="3"
+    android:targetCellHeight="5"
     android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen" />

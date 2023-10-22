@@ -17,3 +17,4 @@ rootProject.name = "school"
 include(":app")
 include(":core:domain")
 include(":core:data")
+include(":core:local")

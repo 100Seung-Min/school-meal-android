@@ -3,14 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.school.core.data"
+    namespace = "com.school.core.remote"
 }
 
 dependencies {
-    implementation(project(":core:remote"))
-    implementation(project(":core:local"))
     implementation(project(":core:domain"))
-    implementation(libs.paging)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
+    testImplementation(libs.okhttp.sse)
+    implementation(libs.paging)
 }

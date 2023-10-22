@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "school"
 include(":app")
- 
+include(":core:domain")

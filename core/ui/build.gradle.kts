@@ -4,6 +4,12 @@ plugins {
 
 android {
     namespace = "com.school.core.ui"
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+    }
 }
 
 dependencies {
